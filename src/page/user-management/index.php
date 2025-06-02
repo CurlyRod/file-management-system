@@ -39,7 +39,7 @@
                                 </div>
                                 <div class="col d-flex justify-content-end">
                                     <button type="button" class="btn btn-primary btn-sm add-user-btn"
-                                        data-bs-toggle="modal" data-bs-target="#exampleModal">Add user</button>
+                                        data-bs-toggle="modal" data-bs-target="#add-user-modal">Add user</button>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -523,7 +523,9 @@
         <!-- [ Main Content ] end -->
 
         <!-- Required Js -->
-        <?php include '../includes/script.php'?>
+        <?php include '../includes/script.php'?> 
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="../../service/user-management.js"></script>
         <script>
         function togglePassword() {
             const passwordInput = document.getElementById("user-password");
