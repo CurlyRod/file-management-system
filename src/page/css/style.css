@@ -1,8 +1,12 @@
 a.pc-link img {
-    height:30px !important; 
+    height:25px !important; 
     margin-bottom:5px;
     margin-right:10px;
 } 
 .add-user-btn{
     border-radius: 5px !important; height:35px;
+} 
+td.action-container { 
+    display:flex; 
+    gap:1rem;  
 }
