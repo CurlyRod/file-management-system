@@ -1,22 +1,23 @@
 <nav class="pc-sidebar">
   <div class="navbar-wrapper">
     <div class="m-header">
-      <a href="../dashboard/index.html" class="b-brand text-primary">
-        <!-- ========   Change your logo from here   ============ -->
-        <img src="../../assets/images/logo-dark.svg" class="img-fluid logo-lg" alt="logo">
+      <a href="#" class="b-brand text-primary">
+        <!-- ========   Change your lssogo from here   ============ -->
+        <img src="../../images/3d-folder.png" class="img-fluid logo-lg" alt="logo"> 
+        FMS
       </a>
     </div>
     <div class="navbar-content">
       <ul class="pc-navbar">
         <li class="pc-item">
           <a href="../dashboard/index.html" class="pc-link">
-            <span class="pc-micon"><i class="ti ti-dashboard"></i></span>
+            <img src="../../images/dashboard (1).png" alt="">   
             <span class="pc-mtext">Dashboard</span>
           </a>
         </li>
 
         <li class="pc-item pc-caption">
-          <label>UI Components</label>
+          <label>Pages</label>
           <i class="ti ti-dashboard"></i>
         </li>
         <li class="pc-item">
