@@ -1,7 +1,7 @@
 <?php  
  // follow the singleton pattern practice to for reusing a function and straight forward transaction.. -rod 3/06/2025
-  require_once '../database/db-conn.php';
-  require_once '../class/user-management.php';   
+  require_once '../../database/db-conn.php';
+  require_once '../../class/super-admin/user-management.php';   
   
   $database = new Database(); 
   $dbConn =  Database::GetInstanceConn();
@@ -67,9 +67,9 @@
                 <td>' . $statusText . '</td>
                 <td>' . htmlspecialchars($user['date_created']) . '</td>
                 <td class="action-container">
-                   <span id="btn-view-user" data-id="' . htmlspecialchars($user['id']) . '"> <img src="../../page/images/eye.png"></span> 
-                   <span id="btn-edit-user" data-id="' . htmlspecialchars($user['id']) . '"> <img src="../../page/images/pencil.png"></span>  
-                   <span id="btn-delete-user" data-id="' . htmlspecialchars($user['id']) . '"> <img src="../../page/images/trash.png"></span> 
+                   <span id="btn-view-user" data-id="' . htmlspecialchars($user['id']) . '"> <img src="../../../page/images/eye.png"></span> 
+                   <span id="btn-edit-user" data-id="' . htmlspecialchars($user['id']) . '"> <img src="../../../page/images/pencil.png"></span>  
+                   <span id="btn-delete-user" data-id="' . htmlspecialchars($user['id']) . '"> <img src="../../../page/images/trash.png"></span> 
                 </td>
             </tr>';
         }
