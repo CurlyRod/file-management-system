@@ -9,4 +9,23 @@ a.pc-link img {
 td.action-container { 
     display:flex; 
     gap:1rem;  
+} 
+span.folder-blue {
+    display:grid;
+    max-width:120px;  
+    justify-content:center;  
+    margin-right: 10px;
+} 
+span.folder-blue img{
+    width:100% !important;
+    height:100% !important;
+} 
+.pc-sidebar .navbar-wrapper {
+    background: #0E4576 !important;
+} 
+.pc-mtext{
+    color:white !important;
+} 
+ul.pc-navbar label {
+    color:white !important;
 }

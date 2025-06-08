@@ -22,5 +22,7 @@
     <!-- [Template CSS Files] -->
     <link rel="stylesheet" href="../../../assets/css/style.css" id="main-style-link">
     <link rel="stylesheet" href="../../../assets/css/style-preset.css">
-    <link rel="stylesheet" href="../../css/style.css"> 
-</head>
+    <link rel="stylesheet" href="../../css/style.css">  
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" type="text/css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+</head>s

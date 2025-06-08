@@ -19,7 +19,7 @@
             $stmt->bind_param("ssssss", $firstName, $middleName, $lastName, $email, $password_hash, $role);          
     
             if ($stmt->execute()) {
-                $result = ["statuscode" => 200, "message" => "Successfully Registered via Stored Procedure."];
+                $result = ["statuscode" => 200, "message" => "Successfully Registered"];
                 echo json_encode($result);
             } else {
                 die("Database error: " . $stmt->error);
@@ -41,7 +41,7 @@
                 while ($row = $result->fetch_assoc()) {
                     $users[] = $row;
                 }
-        
+    
                 return $users;
             }
         
@@ -102,8 +102,7 @@
             if (!$stmt) {
                 die("MYSQL error: " . $this->mysqli->error);
             }
-        
-            
+                 
             $stmt->bind_param("issssi", $id, $firstName, $middleName, $lastName, $email, $role);
         
             if ($stmt->execute()) {
@@ -111,11 +110,9 @@
                 echo json_encode($result);
             } else {
                 die("Database error: " . $stmt->error);
-            }
-        
+            }        
             $stmt->close();
         }
-        
         
     }
 ?>

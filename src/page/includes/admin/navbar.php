@@ -22,8 +22,8 @@
                 </li>
                 <li class="pc-item">
                     <a href="../elements/bc_typography.html" class="pc-link">
-                        <img src="../../images/user-management.png" alt="">
-                        <span class="pc-mtext">User Management</span>
+                        <img src="../../images/attach.png" alt="">
+                        <span class="pc-mtext">My Files</span>
                     </a>
                 </li>
                 <li class="pc-item">

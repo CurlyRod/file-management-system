@@ -73,7 +73,7 @@
 <div class="modal fade" id="editUserModal" tabindex="-1" aria-hidden="true">
 <div class="modal-dialog modal-dialog-centered modal-dialog modal-lg">
     <form id="edit-user-form">
-      <input type="text" id="edit-id" name="edit-id" />
+      <input type="hidden" id="edit-id" name="edit-id" />
       <div class="modal-content">
         <div class="modal-header">
           <h5>Edit User</h5>

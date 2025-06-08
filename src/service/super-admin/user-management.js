@@ -5,7 +5,7 @@ $(document).on('submit', '#add-user-form', function(e) {
 
     var formData = $(this).serialize() + "&action=insert";
     $.ajax({
-        url: "../../../controller/user-management.php",
+        url: "../../../controller/super-admin/user-management.php",
         type: "POST",
         data: formData,
         success: function(response) {
@@ -44,7 +44,7 @@ $(document).ready(function () {
         });
           
         if (value === "") {
-            paginateTable("#user-table", 10); // by default 5
+            paginateTable("#user-table", 10);
         } else {
             $('#pagination').html(''); 
         }
@@ -54,7 +54,7 @@ $(document).ready(function () {
 function GetAllUsers()
 {
     $.ajax({
-        url: "../../../controller/user-management.php",
+        url: "../../../controller/super-admin/user-management.php",
         type: "POST",
         data: { action: "get_all" },
         success: function(response) {
@@ -68,7 +68,7 @@ $(document).on('click', '#btn-view-user', function () {
     const userId = $(this).data('id');
 
     $.ajax({
-        url: "../../../controller/user-management.php",
+        url: "../../../controller/super-admin/user-management.php",
         type: "POST",
         data: {
             action: "get_by_id",
@@ -102,7 +102,6 @@ $(document).on('click', '#btn-view-user', function () {
                       </div>
                     </div>
                 `;
-
                 $('body').append(modalHtml);
                 const modal = new bootstrap.Modal(document.getElementById('dynamic-user-modal'));
                 modal.show();
@@ -123,7 +122,7 @@ $(document).on('click', '#btn-delete-user', function () {
 
     if (confirm("Are you sure you want to delete this user?")) {
         $.ajax({
-            url: "../../../controller/user-management.php",
+            url: "../../../controller/super-admin/user-management.php",
             type: "POST",
             data: {
                 action: "delete_user",
@@ -133,7 +132,7 @@ $(document).on('click', '#btn-delete-user', function () {
                 const res = JSON.parse(response);
                 if (res.statuscode === 200) {
                     alert(res.message);
-                    GetAllUsers(); 
+                    GetAllUUsers(); 
                 } else {
                     alert(res.message);
                 }
@@ -148,7 +147,7 @@ $(document).on('click', '#btn-edit-user', function() {
     const userId = $(this).data('id');
 
     $.ajax({
-        url: '../../../controller/user-management.php',
+        url: '../../../controller/super-admin/user-management.php',
         type: 'POST',
         data: { action: 'get_by_id', id: userId },
         success: function(response) {
@@ -176,7 +175,7 @@ $(document).on('submit', '#edit-user-form', function(e) {
     var formData = $(this).serialize() + "&action=update";
 
     $.ajax({
-        url: '../../../controller/user-management.php',
+        url: '../../../controller/super-admin/user-management.php',
         type: 'POST',
         data: formData,
         success: function(response) {
@@ -203,42 +202,4 @@ function getRoleName(role) {
         default: return 'Client';
     }
 } 
-
-function paginateTable(tableSelector, rowsPerPage = 5) {
-    const table = document.querySelector(tableSelector);
-    const tbody = table.querySelector("tbody");
-    const rows = Array.from(tbody.querySelectorAll("tr"));
-    const totalPages = Math.ceil(rows.length / rowsPerPage);
-    const pagination = document.getElementById("pagination");
-
-    let currentPage = 1;
-
-    function renderPage(page) {
-        const start = (page - 1) * rowsPerPage;
-        const end = start + rowsPerPage;
-
-        rows.forEach((row, i) => {
-            row.style.display = (i >= start && i < end) ? "" : "none";
-        });
-
-        renderPagination(page);
-    }
-
-    function renderPagination(activePage) {
-        pagination.innerHTML = "";
-
-        for (let i = 1; i <= totalPages; i++) {
-            const btn = document.createElement("button");
-            btn.textContent = i;
-            btn.className = "btn btn-sm btn-primary mx-1" + (i === activePage ? " active" : "");
-            btn.addEventListener("click", () => {
-                currentPage = i;
-                renderPage(currentPage);
-            });
-            pagination.appendChild(btn);
-        }
-    }
-
-    renderPage(currentPage);
-}
 
