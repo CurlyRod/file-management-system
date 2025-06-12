@@ -3,8 +3,8 @@
         <div class="m-header">
             <a href="#" class="b-brand text-primary">
                 <!-- ========   Change your lssogo from here   ============ -->
-                <img src="../../images/3d-folder.png" class="img-fluid logo-lg" alt="logo">
-              Access Grant System
+                <img src="../../page/images/folder-blue.png" class="img-fluid logo-lg" alt="logo"> 
+                Access Grant System
             </a>
         </div>
         <div class="navbar-content">
