@@ -1,6 +1,6 @@
 <?php
 require_once '../../database/db-conn.php';
-require_once '../../class/admin/file-management.php';
+require_once '../../class/admin/resolved-tickets.php';
 
 ob_start(); // START buffering to catch unwanted output
 ini_set('display_errors', 1);
@@ -9,12 +9,14 @@ error_reporting(E_ALL);
 
 $database = new Database(); 
 $dbConn = Database::GetInstanceConn();
-$fileManagement = new FileManagement($dbConn);
+$resolvedTickets = new ResolvedTickets($dbConn);
+
 
 if (!isset($_POST['action'])) {
     echo json_encode(['statuscode' => 400, 'message' => 'No action specified']);
     exit;
 }
+
 
 switch ($_POST['action']) {
     case 'upload_file':
@@ -24,24 +26,24 @@ switch ($_POST['action']) {
             exit;
         }
 
-        $fileManagement->SaveFiles($user_id);
+        $resolvedTickets->SaveResolvedTickets($user_id);
         break;
         ob_end_clean();
 } 
 
-if (isset($_POST['action']) && $_POST['action'] === "get_all_files") {
-    $usersFiles = $fileManagement->GetAllUserFiles();  
-  //   echo json_encode($usersFiles);
+
+if (isset($_POST['action']) && $_POST['action'] === "getall_resolved_tickets") {
+    $usersFiles = $resolvedTickets->GetAllResolvedTicket();  
     if (!empty($usersFiles )) {
         
-        $output = '<table id="user-file-table" class="table table-striped table-responsive" style="width:100%; font-size:0.8rem;">
+        $output = '<table id="resolve-tickets-table" class="table table-striped table-responsive" style="width:100%; font-size:0.8rem;">
             <thead>
                 <tr>
                     <th>#</th>
                     <th>Filename</th>   
                     <th>Filetype</th> 
                     <th>Owner</th>
-                    <th>Last Modify</th> 
+                    <th>Date upload</th> 
                     <th style="width: 1rem; text-align:center;">Actions</th>
                 </tr>
             </thead>
@@ -54,36 +56,16 @@ if (isset($_POST['action']) && $_POST['action'] === "get_all_files") {
             $filename = $userFile['filename'];
             $fileType = $userFile['file_type'];
 
-            // Get extension from filename
+            // Get extension from filename info..
             $ext = pathinfo($filename, PATHINFO_EXTENSION);
             $ext = strtolower($ext);
 
-            // Map extension to icon class
+            // Map extension to icon class..  need to explode to take away the the file ext... rod
             switch ($ext) {
-                case 'pdf':
-                    $iconClass = 'fa-solid fa-file-pdf text-danger';
-                    break;
-                case 'doc':
-                case 'docx': 
-                    $iconClass = 'fa-solid fa-file-word text-primary';
-                    break;
                 case 'xls':
                 case 'xlsx':
                     $iconClass = 'fa-solid fa-file-excel text-success';
-                    break;
-                case 'png':
-                case 'jpg':
-                case 'jpeg':
-                case 'gif':
-                    $iconClass = 'fa-solid fa-file-image text-primary';
-                    break;
-                case 'zip':
-                case 'rar':
-                    $iconClass = 'fa-solid fa-file-archive text-warning';
-                    break;
-                case 'txt':
-                    $iconClass = 'fa-solid fa-file-lines text-primary';
-                    break;
+                    break;      
                 default:
                     $iconClass = 'fa-solid fa-file';
             }
@@ -115,16 +97,5 @@ if (isset($_POST['action']) && $_POST['action'] === "get_all_files") {
     exit; 
 } 
 
-    if (isset($_POST['action']) && $_POST['action'] === "delete_files") {
-        $id = intval($_POST['id']);
-        $result = $fileManagement->DeleteFilesById($id); 
-        echo json_encode($result);
-        exit;
-    } 
 
-    if ($_POST['action'] === 'get_file_path') {
-        $id = intval($_POST['id']);
-        $fileManagement->ViewFiles($id); 
-        exit;
-    }
 ?>

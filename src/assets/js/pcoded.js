@@ -473,13 +473,13 @@ function layout_change(layout) {
   } else {
     dark_flag = false;
     if (document.querySelector('.pc-sidebar .m-header .logo-lg')) {
-      document.querySelector('.pc-sidebar .m-header .logo-lg').setAttribute('src', '../../../page/images/3d-folder.png');
+      document.querySelector('.pc-sidebar .m-header .logo-lg').setAttribute('src', '../../../page/images/folder-blue.png');
     }
     if (document.querySelector('.navbar-brand .logo-lg')) {
-      document.querySelector('.navbar-brand .logo-lg').setAttribute('src', '../../page/images/3d-folder.png');
+      document.querySelector('.navbar-brand .logo-lg').setAttribute('src', '../../../page/images/folder-blue.png');
     }
     if (document.querySelector('.auth-main.v1 .auth-sidefooter')) {
-      document.querySelector('.auth-main.v1 .auth-sidefooter img').setAttribute('src', '../../page/images/3d-folder.png');
+      document.querySelector('.auth-main.v1 .auth-sidefooter img').setAttribute('src', '../../../page/images/folder-blue.png');
     }
   
     var control = document.querySelector('.theme-layout > a.active');

@@ -42,12 +42,12 @@
                          
                                 <div class="col d-flex justify-content-end">
                                     <button type="button" class="btn btn-primary btn-sm add-user-btn"
-                                       id="add-user-files">Upload</button>
+                                       id="add-resolved-tickets">Upload</button>
                                 </div> 
                                 <div id="modal-container"></div>
                             </div>
                             <div class="card-body">
-                                <div id="user-files-container-table"></div>
+                                <div id="resolve-tickets-container-table"></div>
                                 <div id="pagination" class="mt-2 d-flex justify-content-center"></div>
                             </div>
                         </div>
@@ -61,7 +61,7 @@
         <!-- Required Js -->
         <?php include '../../includes/script.php'?>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-         <script src="../../../service/admin/file-management.js"></script>  
+         <script src="../../../service/admin/resolved-tickets.js"></script>  
          <script src="../../../page/includes/js/pagination.js"></script>
          <script src="../../components/toast.js"></script> 
 </body>
