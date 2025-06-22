@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 22, 2025 at 01:06 PM
+-- Generation Time: Jun 12, 2025 at 10:53 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -52,12 +52,6 @@ SELECT firstname, middlename, lastname, files.id as fileID, files.original_name,
     WHERE AC.role = 2;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `GetAllTransactionCode` ()   BEGIN 
-SELECT firstname, middlename, lastname, files.id as fileID, files.original_name, files.file_type,files.filename,files.file_path,files.date_created  FROM user_acc AS AC
-	INNER JOIN transaction_code as files ON files.user_id = AC.id 
-    WHERE AC.role = 2;
-END$$
-
 CREATE DEFINER=`root`@`localhost` PROCEDURE `GetAllUserFiles` ()   BEGIN 
  SELECT * FROM files;
 END$$
@@ -95,11 +89,6 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SaveResolvedTickets` (IN `in_filename` VARCHAR(255), IN `in_file_path` VARCHAR(255), IN `in_user_id` INT, IN `in_file_type` VARCHAR(100), IN `in_original_name` VARCHAR(255))   BEGIN
     INSERT INTO resolved_tickets (filename, file_path, user_id, file_type, original_name)
-    VALUES (in_filename, in_file_path, in_user_id, in_file_type, in_original_name);
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SaveTransactionCode` (IN `in_filename` VARCHAR(255), IN `in_file_path` VARCHAR(255), IN `in_user_id` INT, IN `in_file_type` VARCHAR(255), IN `in_original_name` VARCHAR(255))   BEGIN
-    INSERT INTO transaction_code (filename, file_path, user_id, file_type, original_name)
     VALUES (in_filename, in_file_path, in_user_id, in_file_type, in_original_name);
 END$$
 
@@ -170,37 +159,6 @@ CREATE TABLE `resolved_tickets` (
   `date_created` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `resolved_tickets`
---
-
-INSERT INTO `resolved_tickets` (`id`, `filename`, `file_type`, `file_path`, `original_name`, `user_id`, `date_created`) VALUES
-(9, '1750579305_Inventory-Records-Sample-Data.xlsx', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'src/uploads/resolved-tickets/1750579305_Inventory-Records-Sample-Data.xlsx', 'Inventory-Records-Sample-Data.xlsx', 3, '2025-06-22 16:01:45');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `transaction_code`
---
-
-CREATE TABLE `transaction_code` (
-  `id` int(11) NOT NULL,
-  `filename` varchar(255) NOT NULL,
-  `file_path` varchar(255) NOT NULL,
-  `file_type` varchar(255) NOT NULL,
-  `original_name` varchar(255) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `date_created` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `transaction_code`
---
-
-INSERT INTO `transaction_code` (`id`, `filename`, `file_path`, `file_type`, `original_name`, `user_id`, `date_created`) VALUES
-(1, '1750586898_sample-1.pdf', 'src/uploads/transaction-code/1750586898_sample-1.pdf', 'application/pdf', 'sample-1.pdf', 3, '2025-06-22 18:08:18'),
-(2, '1750587077_sample-1.pdf', 'src/uploads/transaction-code/1750587077_sample-1.pdf', 'application/pdf', 'sample-1.pdf', 3, '2025-06-22 18:11:17');
-
 -- --------------------------------------------------------
 
 --
@@ -250,12 +208,6 @@ ALTER TABLE `resolved_tickets`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `transaction_code`
---
-ALTER TABLE `transaction_code`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `user_acc`
 --
 ALTER TABLE `user_acc`
@@ -269,7 +221,7 @@ ALTER TABLE `user_acc`
 -- AUTO_INCREMENT for table `files`
 --
 ALTER TABLE `files`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `folders`
@@ -281,13 +233,7 @@ ALTER TABLE `folders`
 -- AUTO_INCREMENT for table `resolved_tickets`
 --
 ALTER TABLE `resolved_tickets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT for table `transaction_code`
---
-ALTER TABLE `transaction_code`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `user_acc`

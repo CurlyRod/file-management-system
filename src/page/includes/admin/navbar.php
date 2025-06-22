@@ -29,7 +29,7 @@
                     </a>
                 </li> 
                 <li class="pc-item">
-                    <a href="../elements/bc_color.html" class="pc-link">
+                    <a href="../../../page/admin/transaction-code/" class="pc-link">
                         <img src="../../images/transaction-history.png" alt="">
                         <span class="pc-mtext">Transaction Code</span>
                     </a>
