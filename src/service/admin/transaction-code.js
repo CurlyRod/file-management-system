@@ -119,4 +119,32 @@
             paginateTable("#resolve-tickets-table", 10); 
             }
         });
-    } 
+    }  
+
+    $(document).on('click', '#btn-view-files', function () {
+        const fileId = $(this).data('id');
+        fetchFilePathAndOpen(fileId);
+    });
+    
+    function fetchFilePathAndOpen(fileId) {
+        $.ajax({
+            url: "../../../controller/admin/transaction-code.php",
+            type: "POST",
+            data: {
+                action: "get_file_path",
+                id: fileId
+            },
+            dataType: "json",
+            success: function (res) { 
+                console.log(res);
+                if (res.statuscode === 200) {
+                    window.open(res.file_path, '_blank');
+                } else {
+                    alert(res.message || "Failed to retrieve file.");
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("AJAX error:", status, error);
+            }
+        });
+    }

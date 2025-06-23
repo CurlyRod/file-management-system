@@ -112,7 +112,11 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `UpdateUser` (IN `in_id` INT, IN `in
         role = in_role
     WHERE id = in_id;
 END$$
-
+ 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetPDFTransactionCode`(IN `fileID` INT)
+BEGIN 
+SELECT original_name , file_path FROM transaction_code WHERE id = fileID;
+END$$
 DELIMITER ;
 
 -- --------------------------------------------------------

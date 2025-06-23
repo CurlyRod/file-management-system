@@ -121,7 +121,7 @@
 
                 $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
                 $host = $_SERVER['HTTP_HOST'];
-                $previewUrl = $protocol . $host . '/FMS/src/controller/admin/preview.php?file=' . urlencode(basename($qry['file_path'])) . '&name=' . urlencode($qry['original_name']);
+                $previewUrl = $protocol . $host . '/FMS/src/controller/admin/file-serve.php?file=' . urlencode(basename($qry['file_path'])) . '&name=' . urlencode($qry['original_name']);
 
                 echo json_encode([
                     "statuscode" => 200,
