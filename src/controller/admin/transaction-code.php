@@ -95,6 +95,11 @@ if (isset($_POST['action']) && $_POST['action'] === "getall_transaction_code") {
         echo '<h3 class="text-center text-secondary">No files found.</h3>';
     }
     exit; 
-} 
+}  
+if ($_POST['action'] === 'get_file_path') {
+    $id = intval($_POST['id']);
+    $transactionCode->ViewFiles($id); 
+    exit;
+}
 
 ?>

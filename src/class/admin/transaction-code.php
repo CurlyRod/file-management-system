@@ -87,6 +87,44 @@
                 return $userFiles;
             }     
              return null;
-    } 
+    }  
+
+
+     public function ViewFiles($id)
+    {
+        $stmt = $this->mysqli->prepare("CALL GetPDFTransactionCode(?)");
+
+        if (!$stmt) {
+            http_response_code(500);
+            echo json_encode(["statuscode" => 500, "message" => "MYSQL error: " . $this->mysqli->error]);
+            return;
+        }
+
+        $stmt->bind_param("i", $id);
+
+        if ($stmt->execute()) {
+            $result = $stmt->get_result();
+            if ($result->num_rows > 0) {
+                $qry = $result->fetch_assoc(); 
+
+                $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
+                $host = $_SERVER['HTTP_HOST'];
+                $previewUrl = $protocol . $host . '/FMS/src/controller/admin/file-serve.php?file=' . urlencode(basename($qry['file_path'])) . '&name=' . urlencode($qry['original_name']) .'&path='.urlencode("tc");
+
+                echo json_encode([
+                    "statuscode" => 200, 
+                    "file_path" => $previewUrl,
+                    "file_name" => $qry['original_name']
+                ]);
+                
+
+            } else {
+                echo json_encode(["statuscode" => 404, "message" => "File not found."]);
+            }
+        } else {
+            echo json_encode(["statuscode" => 500, "message" => "Query execution failed."]);
+        }
+    }
+
 
 }
