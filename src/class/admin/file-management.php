@@ -139,4 +139,9 @@
     }
 
 }
-?>
+?> 
+
+
+<!-- SELECT * FROM transaction_code AS TC
+INNER JOIN user_acc AS UC ON UC.id = TC.id 
+WHERE UC.id = 3; -->
