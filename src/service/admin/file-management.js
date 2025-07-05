@@ -1,7 +1,10 @@
+    var baseUrl = window.location.origin + '/file-management-system/src';  
+    var absolutePath = baseUrl + "/controller/admin/file-management.php";  
+
     function GetAllFolders()
-    {
+    {  
         $.ajax({
-            url: "../../../controller/admin/files-management.php",
+            url: baseUrl + "/controller/admin/files-management.php",
             type: "POST",
             data: { action: "get_all_folders" },
             success: function(response) {
@@ -9,8 +12,6 @@
             }
         });
     }  
-
-    
 
     $(document).on('click', '#add-user-files', function () {
         const modalHTML = `
@@ -65,7 +66,7 @@
                 }, false);
                 return xhr;
             },
-            url: "../../../controller/admin/file-management.php",
+            url: absolutePath,
             type: "POST",
             data: formData,
             contentType: false,
@@ -112,7 +113,8 @@
             },
             error: function (xhr, status, error) {
                 console.error("AJAX error:", status, error);
-                $("#upload-status").text("Upload failed.").removeClass("text-muted").addClass("text-danger");
+                // $("#upload-status").text("Upload failed.").removeClass("text-muted").addClass("text-danger"); 
+                $("#upload-status").text(status, error).removeClass("text-muted").addClass("text-danger");
             }
         });
     });  
@@ -121,7 +123,8 @@
 
     $(document).ready(function () {
     
-        GetAllUserFiles();   
+        GetAllUserFiles();    
+        console.log(absolutePath);
 
         // search function... -rod
         $(document).on('keyup', '#files-search', function () {
@@ -145,12 +148,12 @@
 
     // delete user 
 
-    $(document).on('click', '#btn-delete-files', function () {
+    $(document).on('click', '#btn-delete-files', function () { 
+       
         const fileID = $(this).data('id');
-        console.log(fileID);
         if (confirm("Are you sure you want to delete this File?")) {
             $.ajax({
-                url: "../../../controller/admin/file-management.php",
+                url: absolutePath,
                 type: "POST",
                 data: {
                     action: "delete_files",
@@ -172,9 +175,10 @@
 
 
     function GetAllUserFiles()
-    {
+    {   
+      
         $.ajax({
-            url: "../../../controller/admin/file-management.php",
+            url: absolutePath,
             type: "POST", 
             data: { action: "get_all_files" },
             success: function(response) {  
@@ -190,9 +194,9 @@
         fetchFilePathAndOpen(fileId);
     });
     
-    function fetchFilePathAndOpen(fileId) {
+    function fetchFilePathAndOpen(fileId) { 
         $.ajax({
-            url: "../../../controller/admin/file-management.php",
+            url: absolutePath,
             type: "POST",
             data: {
                 action: "get_file_path",

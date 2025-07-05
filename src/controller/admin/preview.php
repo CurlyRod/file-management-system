@@ -10,11 +10,10 @@ $storedFile = basename($_GET['file']); // Prevent directory traversal
 $originalName = basename($_GET['name']); // The name you want user to see/download as
  
 $fullPath = "";
-if($relativePath == "tc")
-{
-    $fullPath = __DIR__ . '/../../uploads/transaction-code/' . $storedFile;
-}else{
-    $fullPath = __DIR__ . '/../../uploads/files/' . $storedFile;
+if ($relativePath == "tc") {
+    $fullPath = realpath(__DIR__ . '../../../../uploads/transaction-code/' . $storedFile);
+} else {
+    $fullPath = realpath(__DIR__ . '/../../uploads/files/' . $storedFile);
 }
 
 
