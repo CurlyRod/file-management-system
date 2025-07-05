@@ -90,7 +90,7 @@
     }  
 
 
-     public function ViewFiles($id)
+    public function ViewFiles($id)
     {
         $stmt = $this->mysqli->prepare("CALL GetPDFTransactionCode(?)");
 
@@ -107,18 +107,21 @@
             if ($result->num_rows > 0) {
                 $qry = $result->fetch_assoc(); 
 
-                $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
-                $host = $_SERVER['HTTP_HOST'];
-                $previewUrl = $protocol . $host . '/FMS/src/controller/admin/file-serve.php?file=' . urlencode(basename($qry['file_path'])) . '&name=' . urlencode($qry['original_name']) .'&path='.urlencode("tc");
-
-                echo json_encode([
-                    "statuscode" => 200, 
-                    "file_path" => $previewUrl,
-                    "file_name" => $qry['original_name']
-                ]);
+                $storedFile = basename($qry['file_path']); 
+                $originalName = $qry['original_name'];     
                 
-
-            } else {
+                $previewUrl = 'public/view-file.php?file=' . urlencode($storedFile) . 
+                              '&path=tc' . 
+                              '&name=' . urlencode($originalName);
+                
+                echo json_encode([
+                    "statuscode" => 200,
+                    "file_path" => $previewUrl,
+                    "file_name" => $originalName
+                ]);
+            }
+            
+            else {
                 echo json_encode(["statuscode" => 404, "message" => "File not found."]);
             }
         } else {

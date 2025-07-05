@@ -1,3 +1,6 @@
+    var baseUrl = window.location.origin + '/file-management-system/src';  
+    var absolutePath = baseUrl + "/controller/admin/resolved-tickets.php"; 
+    
     $(document).ready(function () {
         GetAllResolvedTicket();
     });
@@ -79,7 +82,7 @@
                 }, false);
                 return xhr;
             },
-            url: "../../../controller/admin/resolved-tickets.php",
+            url: absolutePath,
             type: "POST",
             data: formData,
             contentType: false,
@@ -112,7 +115,7 @@
     function GetAllResolvedTicket()
     {
         $.ajax({
-            url: "../../../controller/admin/resolved-tickets.php",
+            url: absolutePath,
             type: "POST", 
             data: { action: "getall_resolved_tickets" },
             success: function(response) {  

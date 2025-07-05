@@ -100,9 +100,9 @@ if (isset($_POST['action']) && $_POST['action'] === "get_all_files") {
                 <td>' . htmlspecialchars($owner) . '</td>      
                 <td>' . htmlspecialchars($userFile['date_created']) . '</td>
                 <td class="action-container">
-                   <span id="btn-view-files" data-id="' . htmlspecialchars($userFile['fileID']) . '"> <img src="../../../page/images/eye.png"></span> 
-                   <span id="btn-edit-user" data-id="' . htmlspecialchars($userFile['fileID']) . '"> <img src="../../../page/images/pencil.png"></span>  
-                   <span id="btn-delete-files" data-id="' . htmlspecialchars($userFile['fileID']) . '"> <img src="../../../page/images/trash.png"></span> 
+                   <span id="btn-view-files" data-id="' . htmlspecialchars($userFile['fileID']) . '"> <img src="../../src/assets/images/vendor/eye.png"></span> 
+                   <span id="btn-edit-user" data-id="' . htmlspecialchars($userFile['fileID']) . '"> <img src="../../src/assets/images/vendor/pencil.png"></span>  
+                   <span id="btn-delete-files" data-id="' . htmlspecialchars($userFile['fileID']) . '"> <img src="../../src/assets/images/vendor/trash.png"></span> 
                 </td> 
             </tr>';
         }

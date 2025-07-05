@@ -1,4 +1,6 @@
-    $(document).ready(function () {
+    var baseUrl = window.location.origin + '/file-management-system/src';  
+    var absolutePath = baseUrl + "/controller/admin/transaction-code.php";  
+   $(document).ready(function () {
             GetAllTransactioCode();
     });
 
@@ -78,7 +80,7 @@
                 }, false);
                 return xhr;
             },
-            url: "../../../controller/admin/transaction-code.php",
+            url: absolutePath,
             type: "POST",
             data: formData,
             contentType: false,
@@ -111,7 +113,7 @@
     function GetAllTransactioCode()
     {
         $.ajax({
-            url: "../../../controller/admin/transaction-code.php",
+            url: absolutePath,
             type: "POST", 
             data: { action: "getall_transaction_code" },
             success: function(response) {  
@@ -126,19 +128,20 @@
         fetchFilePathAndOpen(fileId);
     });
     
-    function fetchFilePathAndOpen(fileId) {
+    function fetchFilePathAndOpen(fileId) { 
+        var baseDomain = window.location.origin + '/file-management-system/'; 
         $.ajax({
-            url: "../../../controller/admin/transaction-code.php",
+            url: absolutePath,
             type: "POST",
             data: {
                 action: "get_file_path",
                 id: fileId
             },
             dataType: "json",
-            success: function (res) { 
+            success: function (res) {  
                 console.log(res);
                 if (res.statuscode === 200) {
-                    window.open(res.file_path, '_blank');
+                    window.open(baseDomain + res.file_path, '_blank');
                 } else {
                     alert(res.message || "Failed to retrieve file.");
                 }
