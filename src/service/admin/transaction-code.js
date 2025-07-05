@@ -147,4 +147,28 @@
                 console.error("AJAX error:", status, error);
             }
         });
-    }
+    } 
+
+    $(document).ready(function () {
+    
+      GetAllTransactioCode();
+
+        // search function... -rod
+        $(document).on('keyup', '#files-search', function () {
+            let value = $(this).val().toLowerCase();
+            let visibleRows = 0;
+        
+            $('#transaction-code-table tbody tr').each(function () {
+                const isVisible = $(this).text().toLowerCase().indexOf(value) > -1;
+                $(this).toggle(isVisible);
+        
+                if (isVisible) visibleRows++;
+            });
+            
+            if (value === "") {
+                paginateTable("#transaction-code-table", 10);
+            } else {
+                $('#pagination').html(''); 
+            }
+        }); 
+    });  

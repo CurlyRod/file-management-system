@@ -35,7 +35,7 @@
                     </a>
                 </li> 
                 <li class="pc-item">
-                    <a href="../elements/bc_color.html" class="pc-link">
+                    <a href="../../../page/admin/request/" class="pc-link">
                         <img src="../../images/request.png" alt="">
                         <span class="pc-mtext">Request</span>
                     </a>

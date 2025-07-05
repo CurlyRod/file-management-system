@@ -108,7 +108,7 @@
         });
     });
      
-
+ 
     function GetAllResolvedTicket()
     {
         $.ajax({
@@ -121,4 +121,28 @@
             paginateTable("#resolve-tickets-table", 10); 
             }
         });
-    } 
+    }  
+
+    $(document).ready(function () {
+    
+        GetAllResolvedTicket();  
+
+        // search function... -rod
+        $(document).on('keyup', '#files-search', function () {
+            let value = $(this).val().toLowerCase();
+            let visibleRows = 0;
+        
+            $('#resolve-tickets-table tbody tr').each(function () {
+                const isVisible = $(this).text().toLowerCase().indexOf(value) > -1;
+                $(this).toggle(isVisible);
+        
+                if (isVisible) visibleRows++;
+            });
+            
+            if (value === "") {
+                paginateTable("#resolve-tickets-table", 10);
+            } else {
+                $('#pagination').html(''); 
+            }
+        }); 
+    });  
