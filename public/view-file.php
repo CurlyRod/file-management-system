@@ -14,7 +14,7 @@ switch ($pathKey) {
         $folder = __DIR__ . '../../src/uploads/transaction-code/';
         break;
     case 'files':
-        $folder = __DIR__ . '../src/uploads/files/';
+        $folder = __DIR__ . '../../src/uploads/files/';
         break;
     default:
         http_response_code(400);
