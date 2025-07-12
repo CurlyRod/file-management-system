@@ -101,7 +101,7 @@ if (isset($_POST['action']) && $_POST['action'] === "get_all_files") {
                 <td>' . htmlspecialchars($userFile['date_created']) . '</td>
                 <td class="action-container">
                    <span id="btn-view-files" data-id="' . htmlspecialchars($userFile['fileID']) . '"> <img src="../../src/assets/images/vendor/eye.png"></span> 
-                   <span id="btn-edit-user" data-id="' . htmlspecialchars($userFile['fileID']) . '"> <img src="../../src/assets/images/vendor/pencil.png"></span>  
+                   <span id="btn-download-files" data-id="' . htmlspecialchars($userFile['fileID']) . '"> <img src="../../src/assets/images/vendor/download.png"></span>  
                    <span id="btn-delete-files" data-id="' . htmlspecialchars($userFile['fileID']) . '"> <img src="../../src/assets/images/vendor/trash.png"></span> 
                 </td> 
             </tr>';
@@ -125,6 +125,12 @@ if (isset($_POST['action']) && $_POST['action'] === "get_all_files") {
     if ($_POST['action'] === 'get_file_path') {
         $id = intval($_POST['id']);
         $fileManagement->ViewFiles($id); 
+        exit;
+    } 
+
+    if ($_POST['action'] === 'get_file_download') {
+        $id = intval($_POST['id']);
+        $fileManagement->DownloadFiles($id); 
         exit;
     }
 ?>

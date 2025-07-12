@@ -118,7 +118,7 @@
             data: { action: "getall_transaction_code" },
             success: function(response) {  
             $('#resolve-tickets-container-table').html(response);      
-            paginateTable("#resolve-tickets-table", 10); 
+            paginateTable("#transaction-code-table", 10);
             }
         });
     }  

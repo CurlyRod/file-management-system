@@ -122,29 +122,37 @@
 
 
     $(document).ready(function () {
-    
         GetAllUserFiles();    
         console.log(absolutePath);
-
-        // search function... -rod
+    
+          // search function... -rod
+        $(document).on('keydown', '#files-search', function (e) {
+            if (e.key === 'Enter' || e.keyCode === 13) {
+                e.preventDefault();
+                return false;
+            }
+        });
+    
+     
         $(document).on('keyup', '#files-search', function () {
             let value = $(this).val().toLowerCase();
             let visibleRows = 0;
-        
+    
             $('#user-file-table tbody tr').each(function () {
                 const isVisible = $(this).text().toLowerCase().indexOf(value) > -1;
                 $(this).toggle(isVisible);
-        
+    
                 if (isVisible) visibleRows++;
             });
-            
+    
             if (value === "") {
                 paginateTable("#user-file-table", 10);
             } else {
                 $('#pagination').html(''); 
             }
         }); 
-    });  
+    });
+    
 
     // delete user 
 
@@ -195,6 +203,7 @@
     });
     
     function fetchFilePathAndOpen(fileId) { 
+        var baseDomain = window.location.origin + '/file-management-system/'; 
         $.ajax({
             url: absolutePath,
             type: "POST",
@@ -203,10 +212,10 @@
                 id: fileId
             },
             dataType: "json",
-            success: function (res) { 
+            success: function (res) {  
                 console.log(res);
                 if (res.statuscode === 200) {
-                    window.open(res.file_path, '_blank');
+                    window.open(baseDomain + res.file_path, '_blank');
                 } else {
                     alert(res.message || "Failed to retrieve file.");
                 }
@@ -215,8 +224,43 @@
                 console.error("AJAX error:", status, error);
             }
         });
-    }
-        
+    }   
+    
+    //
+    $(document).on('click', '#btn-download-files', function () {
+        const fileID = $(this).data('id');
+        if (confirm("Are you sure you want to download this File?")) 
+            {
+                $.ajax({
+                    url: absolutePath,
+                    type: "POST",
+                    data: {
+                        action: "get_file_download",
+                        id: fileID
+                    },
+                    success: function (response) {
+                        try {
+                            const res = JSON.parse(response);
+            
+                            if (res.statuscode === 200) {
+                           
+                                window.open(res.download_url, '_blank');
+                            } else {
+                                alert(res.message || "Download failed.");
+                            }
+                        } catch (e) {
+                            console.error("JSON parse error:", response);
+                            alert("Server returned invalid JSON.");
+                        }
+                    },
+                    error: function () {
+                        alert("AJAX failed.");
+                    }
+                });
+            }
+    });
+    
+    
     
     
     
