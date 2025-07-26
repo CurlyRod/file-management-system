@@ -1,0 +1,51 @@
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+    body,html{
+        font-family: "Quicksand", sans-serif !important;
+        font-optical-sizing: auto;
+        font-style: normal;    
+    }
+
+    .row.login-container {
+        height:100vh; 
+        display:flex; 
+        justify-content:center; 
+        align-content:center;
+    }
+    .col.login-container {
+        display:grid;  
+        align-content:center;
+        grid-gap:1rem;  
+    }
+    .p.login-title {
+        font-size:40px;
+        text-transform:uppercase; 
+        text-align:center;  
+        font-weight:bold;
+    } 
+    button.btn-login {
+        width:40%; 
+        height:50px;; 
+        text-decoration:none; 
+        border-radius:5px; 
+        background:#003C85; 
+        color:white; 
+        font-weight:bold; 
+        border:none;
+    }
+
+    .span-text-field {
+        display:grid; 
+        grid-gap:1rem;
+    } 
+
+    input.form-control.form-control-lg {
+        border: 1px solid black;
+        border-radius: 3px !important;
+    }
+    .span.btn-container {
+        text-align:center;
+    } 
+    .span-text-field label {
+        font-size:.8rem; 
+        font-weight:bold;
+    }

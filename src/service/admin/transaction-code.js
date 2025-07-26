@@ -174,4 +174,38 @@
                 $('#pagination').html(''); 
             }
         }); 
-    });  
+    });   
+
+    $(document).on('click', '#btn-download-files', function () {
+        const fileID = $(this).data('id');
+        if (confirm("Are you sure you want to download this File?")) 
+            {
+                $.ajax({
+                    url: absolutePath,
+                    type: "POST",
+                    data: {
+                        action: "get_file_download",
+                        id: fileID
+                    },
+                    success: function (response) {
+                        try {
+                            const res = JSON.parse(response);
+            
+                            if (res.statuscode === 200) {
+                           
+                                window.open(res.download_url, '_blank');
+                            } else {
+                                alert(res.message || "Download failed.");
+                            }
+                        } catch (e) {
+                            console.error("JSON parse error:", response);
+                            alert("Server returned invalid JSON.");
+                        }
+                    },
+                    error: function () {
+                        alert("AJAX failed.");
+                    }
+                });
+            }
+    });
+    
