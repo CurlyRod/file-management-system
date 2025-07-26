@@ -83,6 +83,58 @@ class ResolvedTickets {
              return null;
     } 
 
+    public function DownloadFiles($id)
+    {
+        $stmt = $this->mysqli->prepare("CALL GetResolvedPathByID(?)");
+
+        if (!$stmt) {
+            http_response_code(500);
+            echo json_encode([
+                "statuscode" => 500,
+                "message" => "MYSQL error: " . $this->mysqli->error
+            ]);
+            return;
+        }
+
+    $stmt->bind_param("i", $id);
+
+    if ($stmt->execute()) {
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            $qry = $result->fetch_assoc();
+
+            $storedFile   = basename($qry['file_path']);
+            $originalName = $qry['original_name'];
+
+         
+            $baseUrl = '/file-management-system/public/download-file.php';
+
+            $downloadUrl = $baseUrl . '?' . http_build_query([
+                'file' => $storedFile,
+                'path' => 'rt',
+                'name' => $originalName
+            ]);
+
+            echo json_encode([
+                "statuscode" => 200,
+                "file_name" => $originalName,
+                "download_url" => $downloadUrl
+            ]);
+        } else {
+            echo json_encode([
+                "statuscode" => 404,
+                "message" => "File not found."
+            ]);
+        }
+    } else {
+        echo json_encode([
+            "statuscode" => 500,
+            "message" => "Query execution failed."
+        ]);
+    }
+}
+
+
     
 }
 

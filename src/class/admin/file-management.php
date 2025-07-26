@@ -176,103 +176,56 @@
         }
     } 
 
-    // public function DownloadFiles($id)
-    // {
-    //     $stmt = $this->mysqli->prepare("CALL GetFilePathByID(?)");
-    
-    //     if (!$stmt) {
-    //         http_response_code(500);
-    //         echo json_encode([
-    //             "statuscode" => 500,
-    //             "message" => "MYSQL error: " . $this->mysqli->error
-    //         ]);
-    //         return;
-    //     }
-    
-    //     $stmt->bind_param("i", $id);
-    
-    //     if ($stmt->execute()) {
-    //         $result = $stmt->get_result();
-    //         if ($result->num_rows > 0) {
-    //             $qry = $result->fetch_assoc();
-    
-    //             $storedFile = basename($qry['file_path']);
-    //             $originalName = $qry['original_name'];
-    
-    //             $downloadUrl = 'public/download-file.php?' . http_build_query([
-    //                 'file' => $storedFile,
-    //                 'path' => 'files',
-    //                 'name' => $originalName
-    //             ]);
-    
-    //             echo json_encode([
-    //                 "statuscode" => 200,
-    //                 "file_name" => $originalName,
-    //                 "download_url" => $downloadUrl
-    //             ]);
-    //         } else {
-    //             echo json_encode([
-    //                 "statuscode" => 404,
-    //                 "message" => "File not found."
-    //             ]);
-    //         }
-    //     } else {
-    //         echo json_encode([
-    //             "statuscode" => 500,
-    //             "message" => "Query execution failed."
-    //         ]);
-    //     }
-    // }
     public function DownloadFiles($id)
-{
-    $stmt = $this->mysqli->prepare("CALL GetFilePathByID(?)");
+    {
+        $stmt = $this->mysqli->prepare("CALL GetFilePathByID(?)");
 
-    if (!$stmt) {
-        http_response_code(500);
-        echo json_encode([
-            "statuscode" => 500,
-            "message" => "MYSQL error: " . $this->mysqli->error
-        ]);
-        return;
-    }
-
-    $stmt->bind_param("i", $id);
-
-    if ($stmt->execute()) {
-        $result = $stmt->get_result();
-        if ($result->num_rows > 0) {
-            $qry = $result->fetch_assoc();
-
-            $storedFile   = basename($qry['file_path']);
-            $originalName = $qry['original_name'];
-
-            // ✅ Make sure this path points to your actual public download script
-            $baseUrl = '/file-management-system/public/download-file.php';
-
-            $downloadUrl = $baseUrl . '?' . http_build_query([
-                'file' => $storedFile,
-                'path' => 'files',
-                'name' => $originalName
-            ]);
-
+        if (!$stmt) {
+            http_response_code(500);
             echo json_encode([
-                "statuscode" => 200,
-                "file_name" => $originalName,
-                "download_url" => $downloadUrl
+                "statuscode" => 500,
+                "message" => "MYSQL error: " . $this->mysqli->error
             ]);
+            return;
+        }
+
+        $stmt->bind_param("i", $id);
+
+        if ($stmt->execute()) {
+            $result = $stmt->get_result();
+            if ($result->num_rows > 0) {
+                $qry = $result->fetch_assoc();
+
+                $storedFile   = basename($qry['file_path']);
+                $originalName = $qry['original_name'];
+
+            
+                $baseUrl = '/file-management-system/public/download-file.php';
+
+                $downloadUrl = $baseUrl . '?' . http_build_query([
+                    'file' => $storedFile,
+                    'path' => 'files',
+                    'name' => $originalName
+                ]);
+
+                echo json_encode([
+                    "statuscode" => 200,
+                    "file_name" => $originalName,
+                    "download_url" => $downloadUrl
+                ]);
+            } else {
+                echo json_encode([
+                    "statuscode" => 404,
+                    "message" => "File not found."
+                ]);
+            }
         } else {
             echo json_encode([
-                "statuscode" => 404,
-                "message" => "File not found."
+                "statuscode" => 500,
+                "message" => "Query execution failed."
             ]);
         }
-    } else {
-        echo json_encode([
-            "statuscode" => 500,
-            "message" => "Query execution failed."
-        ]);
     }
-}
 
 
 
