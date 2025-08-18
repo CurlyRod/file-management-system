@@ -1,4 +1,6 @@
-    <?php
+    <?php 
+    require 'custom-guid.php';
+
     class FileManagement {
         private $mysqli;
 
@@ -14,6 +16,7 @@
                 exit;
             }
 
+            $guid = generateManualGUID(); // need to create GUID for look by index index... rod
             $originalName = $_FILES['file']['name'];
             $fileType = $_FILES['file']['type'];
         
@@ -37,13 +40,13 @@
                 exit;
             }
 
-            $stmt = $this->mysqli->prepare("CALL SaveFilesByUser(?, ?, ?, ?, ?)");
+            $stmt = $this->mysqli->prepare("CALL SaveFilesByUser(?, ?, ?, ?, ?, ?)");
             if (!$stmt) {
                 echo json_encode(['statuscode' => 500, 'message' => 'Prepare failed: ' . $this->mysqli->error]);
                 exit;
             }
         
-            $stmt->bind_param('ssiss', $newFilename, $relativePath, $user_id, $fileType, $originalName);
+            $stmt->bind_param('ssisss', $newFilename, $relativePath, $user_id, $fileType, $originalName, $guid);
             
             if (!$stmt->execute()) {
                 echo json_encode(['statuscode' => 500, 'message' => 'Execute failed: ' . $stmt->error]);
