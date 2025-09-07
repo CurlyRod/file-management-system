@@ -28,32 +28,35 @@
                 <div class="col-sm-12">
                     <div class="card card-container-shadow">
                         <div class="row content" style="padding:1rem;">
-                            <div class="col first-container" style="border:1px solid grey;">
+                            <div class="col first-container">
                                 <span class="header-container">
                                     <h5>Request a File</h5>
                                 </span>
                                 <div class="content">
-                                    <span>
-                                        <label>NAME</label>
-                                        <input class="form-control form-control-md mb-1" type="text">
-                                    </span>
-                                    <span>
-                                        <label class>FILE NAME</label>
-                                        <input class="form-control form-control-md" type="text">
-                                    </span>
-                                    <span>
-                                        <button type="button" class="btn-request">Request</button>
-                                    </span>
+                                    <form action="POST">
+                                        <span>
+                                            <input type="hidden" name="user_id" id="user_id" value="3">
+                                            <label>NAME</label>
+                                            <input class="form-control form-control-md mb-1" type="text">
+                                        </span>
+                                        <span>
+                                            <label class>FILE NAME</label>
+                                            <input class="form-control form-control-md" id='filename' type="text">
+                                        </span>
+                                        <span>
+                                            <button type="button" class="btn-request" id="btn_request">Request</button>
+                                        </span>
+                                    </form>
                                 </div>
                             </div>
-                            <div class="col second-container" style="border:1px solid grey;">
+                            <div class="col second-container">
                                 <div class="content">
                                     <div class="search-container">
-                                        <div class="col-3">
+                                        <div class="col-4 d-flex justify-content-start">
                                             <h5>Status of Request</h5>
                                         </div>
                                         <div class="col">
-                                            <form class="px-3">
+                                            <form class="px-1">
                                                 <div class="form-group mb-1 d-flex align-items-center">
                                                     <i data-feather="search"></i>
                                                     <input id="files-search"
@@ -97,22 +100,23 @@
                                 </div>
                             </div>
                             <div class="list-requested-file">
-                            <div class="header-requested-title" >
-                                <div class="row">
-                                    <div class="col-2">
-                                        <h5>List of Requested Files</h5>
-                                    </div>
-                                    <div class="col">
-                                        <form class="px-3">
-                                            <div class="form-group mb-1 d-flex align-items-center">
-                                                <i data-feather="search"></i>
-                                                <input id="files-search" class="form-control border-1 shadow-sm  mx-2"
-                                                    placeholder="Search here. . .">
-                                            </div>
-                                        </form>
+                                <div class="header-requested-title">
+                                    <div class="row">
+                                        <div class="col-3 d-flex align-items-center">
+                                            <h5>List of Requested Files</h5>
+                                        </div>
+                                        <div class="col">
+                                            <form class="px-1">
+                                                <div class="form-group mb-1 d-flex align-items-center">
+                                                    <i data-feather="search"></i>
+                                                    <input id="files-search"
+                                                        class="form-control border-1 shadow-sm  mx-2"
+                                                        placeholder="Search here. . .">
+                                                </div>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             </div>
                         </div>
                     </div>
@@ -127,6 +131,7 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="../../src/include/components/pagination.js"></script>
         <script src="../../src/include/components/toast.js"></script>
+        <script src="../../src/service/client/request.js"></script>
 
 </body>
 <!-- [Body] end -->

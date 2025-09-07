@@ -72,14 +72,7 @@
             contentType: false,
             processData: false,
             dataType: 'json',
-            success: function (res) {
-                console.log("Raw response object:", res); 
-                // if (res.statuscode === 200) {
-                //     $("#upload-status").text(res.message).removeClass("text-muted").addClass("text-success");
-                // } else {
-                //     $("#upload-status").text(res.message).addClass("text-danger");
-                // } 
-                
+            success: function (res) {    
                 if (res.statuscode === 200) {
                 
                     $('#uploadModal').modal('hide'); 
