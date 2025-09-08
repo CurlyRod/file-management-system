@@ -34,7 +34,40 @@ class Request
             'filename' => $filename,
         ]);
 
-   }
+   } 
+
+    public function GetAllRequestById($id)
+    {
+        $stmt = $this->mysqli->prepare("CALL GetRequestById(?)"); 
+                
+        if (!$stmt) {
+            http_response_code(500);
+            echo json_encode([
+                "statuscode" => 500,
+                "message" => "MYSQL error: " . $this->mysqli->error
+            ]);
+            return [];
+        } 
+
+        $stmt->bind_param("i", $id);
+
+        $userFiles = [];
+
+        if ($stmt->execute()) {
+            $result = $stmt->get_result();  
+            if ($result && $result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $userFiles[] = $row;
+                }
+            }
+            $result->free();
+        }
+
+        $stmt->close();
+        $this->mysqli->next_result();
+
+        return $userFiles;
+    }
 
 }
 

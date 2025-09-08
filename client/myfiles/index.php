@@ -45,7 +45,7 @@
                                 <div id="modal-container"></div>
                             </div>
                             <div class="card-body">
-                                <div id="user-files-container-table"></div>
+                                <div id="user-request-container-table"></div>
                                 <div id="pagination" class="mt-2 d-flex justify-content-center"></div>
                             </div>
                         </div>
