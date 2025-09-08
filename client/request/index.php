@@ -59,44 +59,15 @@
                                             <form class="px-1">
                                                 <div class="form-group mb-1 d-flex align-items-center">
                                                     <i data-feather="search"></i>
-                                                    <input id="files-search"
+                                                    <input id="status-search"
                                                         class="form-control border-1 shadow-sm  mx-2"
                                                         placeholder="Search here. . .">
                                                 </div>
                                             </form>
                                         </div>
                                     </div>
-                                    <div class="table-search mt-2">
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">First</th>
-                                                    <th scope="col">Last</th>
-                                                    <th scope="col">Handle</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>Mark</td>
-                                                    <td>Otto</td>
-                                                    <td>@mdo</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">2</th>
-                                                    <td>Jacob</td>
-                                                    <td>Thornton</td>
-                                                    <td>@fat</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">3</th>
-                                                    <td colspan="2">Larry the Bird</td>
-                                                    <td>@twitter</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                  <div id="user-status-request-container-table"></div>
+                                  <div id="status-paginate" class="mt-2 d-flex justify-content-center"></div>
                                 </div>
                             </div>
                             <div class="list-requested-file">
@@ -114,7 +85,11 @@
                                                         placeholder="Search here. . .">
                                                 </div>
                                             </form>
-                                        </div>
+                                        </div> 
+                                          <div class="card-body">
+                                                <div id="user-request-container-table"></div>
+                                                <div id="pagination" class="mt-2 d-flex justify-content-center"></div>
+                                            </div>
                                     </div>
                                 </div>
                             </div>
@@ -130,6 +105,7 @@
         <?php include '../../src/include/scripts/scripts.php'?>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="../../src/include/components/pagination.js"></script>
+        <script src="../../src/include/components/search.js"></script>
         <script src="../../src/include/components/toast.js"></script>
         <script src="../../src/service/client/request.js"></script>
 

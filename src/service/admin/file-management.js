@@ -116,7 +116,6 @@
 
     $(document).ready(function () {
         GetAllUserFiles();    
-        console.log(absolutePath);
     
           // search function... -rod
         $(document).on('keydown', '#files-search', function (e) {

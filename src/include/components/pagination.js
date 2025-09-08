@@ -1,9 +1,17 @@
-function paginateTable(tableSelector, rowsPerPage = 5) {
+function paginateTable(tableSelector, rowsPerPage = 5, paginate = "pagination") { 
     const table = document.querySelector(tableSelector);
+    if (!table) return; 
+
     const tbody = table.querySelector("tbody");
     const rows = Array.from(tbody.querySelectorAll("tr"));
     const totalPages = Math.ceil(rows.length / rowsPerPage);
-    const pagination = document.getElementById("pagination");
+    const pagination = document.getElementById(paginate);
+ 
+    if (!pagination) {
+            console.warn(`Pagination container #${paginate} not found`);
+            return; // 🔑 stop if missing
+        }
+
 
     let currentPage = 1;
 
