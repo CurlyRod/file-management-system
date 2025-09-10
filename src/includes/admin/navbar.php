@@ -36,7 +36,7 @@
                     </a>
                 </li> 
                 <li class="pc-item">
-                    <a href="../../../page/admin/request/" class="pc-link">
+                    <a href="../../admin/request/" class="pc-link">
                     <img src="<?php echo $baseUrl . 'assets/images/vendor/request.png'?>" alt="">
                         <span class="pc-mtext">Request</span>
                     </a>

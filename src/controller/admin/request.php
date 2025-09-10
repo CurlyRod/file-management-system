@@ -66,7 +66,8 @@ if (isset($_POST['action']) && $_POST['action'] === "get_all_request_files") {
                     $iconClass = 'fa-solid fa-file-lines text-primary';
                     break;
                 default:
-                    $iconClass = 'fa-solid fa-file';
+                    $iconClass = 'fa-solid fa-file'; 
+                    $ext = 'File';
             }
             $output .= '<tr> 
             

@@ -62,12 +62,6 @@
         <!-- [ Main Content ] end -->
 
         <!-- Required Js -->
-        <!-- <?php include '../../includes/script.php'?>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-         <script src="../../../service/admin/resolved-tickets.js"></script>  
-         <script src="../../../page/includes/js/pagination.js"></script>
-         <script src="../../components/toast.js"></script>   -->
-
         <?php include '../../src/include/scripts/scripts.php'?> 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="../../src/service/admin/resolved-tickets.js"></script>  
