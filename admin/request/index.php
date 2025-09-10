@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <!-- [Head] start -->
-<?php include '../../includes/head.php'?>
+<?php include '../../src/includes/head.php'?> 
+<link rel="stylesheet" href="<?php echo $baseUrl  . '/assets/css/style.css'?>" id="main-style-link"> 
+<link rel="stylesheet" href="<?php echo $baseUrl . '/assets/css/custom/style.css' ?>" />  
+<link rel="stylesheet" href="<?php echo $baseUrl . '/assets/js/toastr/toastr.min.css' ?>" />  
 <!-- [Head] end -->
 <!-- [Body] Start -->
 
@@ -14,10 +17,10 @@
     </div>
     <!-- [ Pre-loader ] End -->
     <!-- [ Sidebar Menu ] start -->
-    <?php include  '../../includes/admin/navbar.php' ?>
+    <?php include  '../../src/includes/admin/navbar.php' ?>
     <!-- [ Sidebar Menu ] end -->
     <!-- [ Header Topbar ] start -->
-    <?php include  '../../includes/header.php' ?>
+    <?php include  '../../src/includes/header.php' ?>
     <!-- [ Header ] end -->
 
     <!-- [ Main Content ] start -->
@@ -54,11 +57,13 @@
         <!-- [ Main Content ] end -->
 
         <!-- Required Js -->
-        <?php include '../../includes/script.php'?>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-         <script src="../../../service/admin/request.js"></script>  
-         <script src="../../../page/includes/js/pagination.js"></script>
-         <script src="../../components/toast.js"></script> 
+        <?php include '../../src/include/scripts/scripts.php'?> 
+         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+         <script src="../../src/service/admin/request.js"></script>  
+         <script src="../../src/include/components/pagination.js"></script> 
+         <script src="../../src/include/components/toast.js"></script>  
+         <script src="../../src/include/components/search.js"></script>
+         
 </body>
 <!-- [Body] end -->
 

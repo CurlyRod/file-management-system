@@ -70,7 +70,7 @@
     if($_POST['action'] === "get_request_file")
     {   
          $usersFiles = $request->GetAllRequestById($_POST["user_id"]);  
-         $counter = 1; 
+ 
 
          if (!empty($usersFiles))
          { 
