@@ -1,8 +1,9 @@
 <?php 
-require_once '../../database/db-conn.php'; 
+  require_once '../../database/db-conn.php';  
+
+ 
 class ResolvedTickets {
     private $mysqli;
-
     public function __construct($dbConn) {
         $this->mysqli = $dbConn->getConnection();
     }  
