@@ -1,24 +1,27 @@
 <?php
     require_once '../../database/db-conn.php';
     require_once '../../class/client/request.php';
-
+    require_once '../../class/admin/transaction-code.php';
     ob_start(); // START buffering to catch unwanted output
     ini_set('display_errors', 1);
-    error_reporting(E_ALL);
+    error_reporting(E_ALL); 
  
 
     $database = new Database(); 
     $dbConn = Database::GetInstanceConn();  
-    $request = new Request($dbConn);
+    $request = new Request($dbConn); 
+    $transactionCode = new TransactionCode($dbConn);
+
 
     if($_POST['action'] === "request_file")
     {
-         $request->RequestFile($_POST["filename"], $_POST["user_id"]); 
+         $request->RequestFile($_POST['guid_file'], $_POST["filename"], $_POST["user_id"]); 
          exit;
-    }   
+    }  
+     
      if($_POST['action'] === "get_status_file")
      {
-        $usersFiles = $request->GetAllRequestById($_POST["user_id"]);  
+         $usersFiles = $request->GetAllRequestById($_POST["user_id"]);  
          $counter = 1; 
 
          if (!empty($usersFiles))
@@ -144,5 +147,25 @@
    }  
 
   
+if (isset($_POST['action']) && $_POST['action'] === "getall_transaction_code") 
+{
+    $transactionFile = $request->GetAllRequestTransactionById($_POST['user_id']);   
+
+    $data = []; 
+    $counter = 1;
+
+    foreach ($transactionFile as $tr) { 
+        $data[] = [ 
+            "statuscode" => 200,
+            "count"     => $counter++, 
+            "filename"  => $tr['original_name'],
+            "guid_file" => $tr['guid_file']
+        ];
+    }
+
+ 
+    header('Content-Type: application/json');
+    echo json_encode($data);
+}
 
 ?>

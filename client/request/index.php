@@ -1,10 +1,17 @@
+<?php   
+    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
+    $host = $_SERVER['HTTP_HOST'];
+    $baseUrl = $protocol . $host . "/file-management-system/src/";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <link rel="stylesheet" href="./index.css">
 <?php include '../../src/includes/head.php'?>
 <link rel="stylesheet" href="<?php echo $baseUrl  . '/assets/css/style.css'?>" id="main-style-link">
 <link rel="stylesheet" href="<?php echo $baseUrl . '/assets/css/custom/style.css' ?>" />
-<link rel="stylesheet" href="<?php echo $baseUrl . '/assets/js/toastr/toastr.min.css' ?>" />
+<link rel="stylesheet" href="<?php echo $baseUrl . '/assets/js/toastr/toastr.min.css' ?>" /> 
+<link rel="stylesheet" href="<?php echo $baseUrl . 'include/select2/select2.min.css'?>">
+<link rel="stylesheet" href="<?php echo $baseUrl . 'include/select2/select2.css'?>">
 
 <body data-pc-preset="preset-1" data-pc-direction="ltr" data-pc-theme="light">
     <!-- [ Pre-loader ] start -->
@@ -30,7 +37,7 @@
                         <div class="row content" style="padding:1rem;">
                             <div class="col first-container">
                                 <span class="header-container">
-                                    <h5>Request a File</h5>
+                                    <h5>Request a File</h5> 
                                 </span>
                                 <div class="content">
                                     <form action="POST">
@@ -40,8 +47,9 @@
                                             <input class="form-control form-control-md mb-1" type="text">
                                         </span>
                                         <span>
-                                            <label class>FILE NAME</label>
-                                            <input class="form-control form-control-md" id='filename' type="text">
+                                            <label class>FILE NAME</label> 
+                                            <select id="select-request-file" name="" class="js-example-responsive" style="width:100%;"></select>
+                                            <!-- <input class="form-control form-control-md" id='filename' type="text"> -->
                                         </span>
                                         <span>
                                             <button type="button" class="btn-request" id="btn_request">Request</button>
@@ -98,7 +106,8 @@
                 </div>
                 <!-- [ Main Content ] end -->
             </div>
-        </div>
+        </div> 
+     </div>
         <!-- [ Main Content ] end -->
 
         <!-- Required Js -->
@@ -106,10 +115,11 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="../../src/include/components/pagination.js"></script>
         <script src="../../src/include/components/search.js"></script>
-        <script src="../../src/include/components/toast.js"></script>
-        <script src="../../src/service/client/request.js"></script>
-
+        <script src="../../src/include/components/toast.js"></script> 
+        <script src="<?php echo $baseUrl . 'include/select2/select2.min.js'?>"></script> 
+        <script src="../../src/service/client/request.js"></script> 
+        
 </body>
 <!-- [Body] end -->
 
-</html>
+</html> 

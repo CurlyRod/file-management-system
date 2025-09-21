@@ -2,14 +2,15 @@
 require_once '../../database/db-conn.php';
 require_once '../../class/admin/request.php';
 
+
 ob_start(); // START buffering to catch unwanted output
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 
 $database = new Database(); 
-$dbConn = Database::GetInstanceConn();
-$fileRequest = new Request($dbConn);
+$dbConn = Database::GetInstanceConn(); 
+
 
 if (isset($_POST['action']) && $_POST['action'] === "get_all_request_files") {
     $usersFiles = $fileRequest->GetAllRequest();  
@@ -95,5 +96,5 @@ if (isset($_POST['action']) && $_POST['action'] === "get_all_request_files") {
     }
     exit; 
 } 
-
+     
 ?>
