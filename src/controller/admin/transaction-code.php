@@ -106,7 +106,13 @@
         $id = intval($_POST['id']);
         $transactionCode->DownloadFiles($id); 
         exit;
+    } 
+    
+    if ($_POST['action'] == 'accete_file_request') { 
+         $id = intval($_POST['id']); 
+         $guid = $_POST['guid_file'];
+         $transactionCode->AcceptRequestFile($user_id, $guid); 
+         exit;
     }
-
 
     ?>

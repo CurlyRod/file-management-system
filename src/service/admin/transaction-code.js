@@ -16,7 +16,7 @@
                         </div>
                         <div class="modal-body">
                            <input type="file" name="file" class="form-control mb-3" required accept="application/pdf">
-                            <input type="hidden" name="user_id" value="3">
+                            <input type="hidden" name="user_id" value="2">
 
                             <div class="progress mb-2" style="height: 20px;">
                                 <div id="upload-progress" class="progress-bar" role="progressbar" style="width: 0%;">0%</div>
@@ -141,7 +141,7 @@
             success: function (res) {  
                 console.log(res);
                 if (res.statuscode === 200) {
-                    window.open(baseDomain + res.file_path, '_blank');
+                    window.open(baseDomain + res.file_path+'#toolbar=0','_blank');
                 } else {
                     alert(res.message || "Failed to retrieve file.");
                 }
@@ -209,3 +209,27 @@
             }
     });
     
+
+    $(document).on('click', '#btn-accept-files', function () { 
+       
+        const fileID = $(this).data('id');
+        if (confirm("Are you sure you want to approve this File request?")) {
+            $.ajax({
+                url: absolutePath,
+                type: "POST",
+                data: {
+                    action: "delete_files",
+                    id: fileID
+                },
+                success: function (response) {
+                    const res = JSON.parse(response);
+                    if (res.statuscode === 200) {
+                        alert(res.message);
+                        GetAllUserFiles(); 
+                    } else {
+                        alert(res.message);
+                    }
+                }
+            });
+        }
+    });

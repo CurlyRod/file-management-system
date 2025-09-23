@@ -181,6 +181,33 @@ class TransactionCode{
                     "message" => "Query execution failed."
                 ]);
             }
+        } 
+
+            
+    public function AcceptRequestFile($user_id, $guid)
+    { 
+         $stmt = $this->mysqli->prepare("CALL UpdateStatusRequest(?,?)"); 
+    
+                    if (!$stmt) {
+            echo json_encode(['statuscode' => 500, 'message' => 'Prepare failed: ' . $this->mysqli->error]);
+            return;
         }
+
+         $stmt->bind_param("i", $user_id,$guid);
+    
+        if (!$stmt->execute()) {
+            echo json_encode(['statuscode' => 500, 'message' => 'Execute failed: ' . $stmt->error]);
+            $stmt->close();
+            return;
+        }
+
+        $stmt->close(); 
+
+        echo json_encode([
+            'statuscode' => 200,
+            'message' => 'File request accepted!',
+        ]);
+
+    }
 
     }
