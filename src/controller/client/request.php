@@ -149,7 +149,7 @@
   
 if (isset($_POST['action']) && $_POST['action'] === "getall_transaction_code") 
 {
-    $transactionFile = $request->GetAllRequestTransactionById($_POST['user_id']);   
+    $transactionFile = $request->GetAllRequestTransactionById();   
 
     $data = []; 
     $counter = 1;

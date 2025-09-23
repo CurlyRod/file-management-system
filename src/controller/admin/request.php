@@ -9,7 +9,8 @@ error_reporting(E_ALL);
 
 
 $database = new Database(); 
-$dbConn = Database::GetInstanceConn(); 
+$dbConn = Database::GetInstanceConn();  
+$fileRequest = new Request($dbConn);
 
 
 if (isset($_POST['action']) && $_POST['action'] === "get_all_request_files") {

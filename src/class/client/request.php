@@ -88,9 +88,9 @@ class Request
     }  
   
 
-    public function GetAllRequestTransactionById($id)
+    public function GetAllRequestTransactionById()
     {
-        $stmt = $this->mysqli->prepare("CALL Client_GetTransationFile(?)"); 
+        $stmt = $this->mysqli->prepare("CALL Client_GetTransationFile()"); 
                 
         if (!$stmt) {
             http_response_code(500);
@@ -101,7 +101,7 @@ class Request
             return [];
         } 
 
-        $stmt->bind_param("i", $id);
+
 
         $userFiles = [];
 
@@ -119,8 +119,9 @@ class Request
         $this->mysqli->next_result();
         return $userFiles;
     }  
- 
-
+    
+        
+   
 
     
 
