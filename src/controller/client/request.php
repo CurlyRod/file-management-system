@@ -42,12 +42,18 @@
              $filename = $userFile['filename'];   
              
              $status = '';
-             if($userFile['status'] == 1)
+             if($userFile['is_accept'] == 1)
              {
                 $status = '<div class="bg-success status-container">
                                Approved
                             </div>';
-             }else
+             }else if($userFile['is_accept'] == 3)
+             {
+                $status = '<div class="bg-danger status-container">
+                            Declined
+                         </div>';
+             }
+             else
              {
                $status = '<div class="bg-warning status-container">
                              Pending
@@ -83,7 +89,8 @@
                         <th>#</th>
                         <th>Filename</th>   
                         <th>File Type</th>    
-                        <th>Date Requested</th>   
+                        <th>Date Requested</th>    
+                        <th>Action</th>   
                     </tr>
                 </thead>
                 <tbody>';
@@ -134,7 +141,8 @@
                                     <small class="text-muted">(' . strtoupper($ext) . ')</small>
                                 </large>
                             </td>
-                             <td>' . $userFile['date_created'] . '</td> 
+                             <td>' . $userFile['date_created'] . '</td>  
+                             <td>' . '<button class="btn btn-sm btn-primary">Show</button>' . '</td> 
                         </tr>';    
             } 
             $output .= '</tbody></table>';
@@ -148,22 +156,24 @@
 
   
 if (isset($_POST['action']) && $_POST['action'] === "getall_transaction_code") 
-{
-    $transactionFile = $request->GetAllRequestTransactionById();   
+{   
+    
+    $transactionFile = $request->GetAllRequestTransactionById($_POST['user_id']);   
 
     $data = []; 
     $counter = 1;
 
-    foreach ($transactionFile as $tr) { 
-        $data[] = [ 
-            "statuscode" => 200,
-            "count"     => $counter++, 
-            "filename"  => $tr['original_name'],
-            "guid_file" => $tr['guid_file']
-        ];
+    if($transactionFile)
+    {
+        foreach ($transactionFile as $tr) { 
+            $data[] = [ 
+                "statuscode" => 200,
+                "count"     => $counter++, 
+                "filename"  => $tr['original_name'],
+                "guid_file" => $tr['guid_file']
+            ];
+        }
     }
-
- 
     header('Content-Type: application/json');
     echo json_encode($data);
 }

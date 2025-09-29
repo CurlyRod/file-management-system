@@ -35,7 +35,6 @@
                 guid_file: guid
             },
             success: function (res) {
-                console.log("Response from PHP:", res);
 
                 if (res.statuscode === 200) {
                   
@@ -49,7 +48,7 @@
                     toastModal(res.message);
                 } else {
                 
-                    toastModal(res.message);
+                    toastModal(res.message, "warning");
                 }
             },
             error: function (xhr, status, error) {
@@ -94,7 +93,7 @@
             dataType: "json",
             data: { action: "getall_transaction_code", user_id: user_id },
             success: function(response) {
-            
+                console.log(response);
                 let dataArray = Array.isArray(response) ? response : [];
 
                 $('#select-request-file').empty();
@@ -131,7 +130,7 @@
         });
     }
 
-    function toastModal(result)
+    function toastModal(result, condition)
     {
         toastr.options = {
             "closeButton": false,
@@ -150,5 +149,10 @@
             "showMethod": "fadeIn",
             "hideMethod": "fadeOut"
         }
-        toastr.success(result); 
+        if(condition === "warning")
+        {
+              toastr.warning(result); 
+        }else{
+              toastr.success(result); 
+        }
     }
