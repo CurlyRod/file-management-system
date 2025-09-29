@@ -61,8 +61,9 @@
          <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
          <script src="../../src/service/admin/request.js"></script>  
          <script src="../../src/include/components/pagination.js"></script> 
-         <script src="../../src/include/components/toast.js"></script>  
+         <script src="../../src/include/components/toast.js"></script>   
          <script src="../../src/include/components/search.js"></script>
+         <script src="../../src/include/components/custom-toast.js"></script>
          
 </body>
 <!-- [Body] end -->

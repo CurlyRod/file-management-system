@@ -27,9 +27,9 @@ class Request{
     }  
 
     
-    public function AcceptRequest($guid_file, $user_id)
+    public function AcceptRequestFile($guid_file, $file_id)
     {
-        $stmt = $this->mysqli->prepare("CALL Admin_AcceptRequest()");
+        $stmt = $this->mysqli->prepare("CALL Admin_AcceptRequest(?,?)");
         
         if (!$stmt) {
                 return null;
@@ -40,7 +40,7 @@ class Request{
             return;
         }
 
-         $stmt->bind_param("si", $guid_file, $user_id);
+         $stmt->bind_param("si", $guid_file, $file_id);
     
         if (!$stmt->execute()) {
             echo json_encode(['statuscode' => 500, 'message' => 'Execute failed: ' . $stmt->error]);
@@ -54,6 +54,37 @@ class Request{
             'statuscode' => 200,
             'message' => 'File request accepted!',
         ]);
+    } 
+
+
+    public function DeclineRequestFile($guid_file, $file_id)
+    {
+        $stmt = $this->mysqli->prepare("CALL Admin_DeclinedRequest(?,?)");
+        
+        if (!$stmt) {
+                return null;
+            }  
+
+        if (!$stmt) {
+            echo json_encode(['statuscode' => 500, 'message' => 'Prepare failed: ' . $this->mysqli->error]);
+            return;
+        }
+
+         $stmt->bind_param("si", $guid_file, $file_id);
+    
+        if (!$stmt->execute()) {
+            echo json_encode(['statuscode' => 500, 'message' => 'Execute failed: ' . $stmt->error]);
+            $stmt->close();
+            return;
+        }
+
+        $stmt->close(); 
+
+        echo json_encode([
+            'statuscode' => 200,
+            'message' => 'File request decline!',
+        ]);
     }
+
 
 }
