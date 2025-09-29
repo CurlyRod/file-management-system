@@ -1,10 +1,21 @@
 function paginateTable(tableSelector, rowsPerPage = 5) {
     const table = document.querySelector(tableSelector);
+    if (!table) return; // in case selector doesn't exist
+
     const tbody = table.querySelector("tbody");
     const rows = Array.from(tbody.querySelectorAll("tr"));
-    const totalPages = Math.ceil(rows.length / rowsPerPage);
     const pagination = document.getElementById("pagination");
 
+    if (!pagination) return;
+
+
+    pagination.innerHTML = "";
+
+    if (rows.length === 0) {
+        return;
+    }
+
+    const totalPages = Math.ceil(rows.length / rowsPerPage);
     let currentPage = 1;
 
     function renderPage(page) {
@@ -24,7 +35,8 @@ function paginateTable(tableSelector, rowsPerPage = 5) {
         for (let i = 1; i <= totalPages; i++) {
             const btn = document.createElement("button");
             btn.textContent = i;
-            btn.className = "btn btn-sm btn-primary mx-1" + (i === activePage ? " active" : "");
+            btn.className =
+                "btn btn-sm btn-primary mx-1" + (i === activePage ? " active" : "");
             btn.addEventListener("click", () => {
                 currentPage = i;
                 renderPage(currentPage);
@@ -35,4 +47,3 @@ function paginateTable(tableSelector, rowsPerPage = 5) {
 
     renderPage(currentPage);
 }
-

@@ -86,7 +86,7 @@ if (isset($_POST['action']) && $_POST['action'] === "get_all_request_files") {
                 <td>' . htmlspecialchars($userFile['date_created']) . '</td>
                 <td class="action-container">
                    <span id="accept_file_request" data-id="' . htmlspecialchars($userFile['id']) . '"> <button class="btn btn-primary btn-sm">Accept</button></span> 
-                         <span id="btn-view-files" data-id="' . htmlspecialchars($userFile['id']) . '"> <button class="btn btn-danger btn-sm">Decline</button></span> 
+                         <span id="decline_file_request" data-id="' . htmlspecialchars($userFile['id']) . '"> <button class="btn btn-danger btn-sm">Decline</button></span> 
                 </td> 
             </tr>';
         }
@@ -99,10 +99,17 @@ if (isset($_POST['action']) && $_POST['action'] === "get_all_request_files") {
     exit; 
 } 
      
-  if ($_POST['action'] == 'accept_file_request') { 
-         $user_id = intval($_POST['id']); 
+  if (isset($_POST['action']) && $_POST['action'] == 'accept_file_client') { 
+         $user_id = intval($_POST['file_id']); 
          $guid_file = $_POST['guid_file'];
          $fileRequest->AcceptRequestFile($guid_file, $user_id); 
+         exit;
+    } 
+
+    if (isset($_POST['action']) && $_POST['action'] == 'decline_file_client') { 
+         $user_id = intval($_POST['file_id']); 
+         $guid_file = $_POST['guid_file'];
+         $fileRequest->DeclineRequestFile($guid_file, $user_id); 
          exit;
     }
 ?>
