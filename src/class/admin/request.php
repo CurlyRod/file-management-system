@@ -9,7 +9,7 @@ class Request{
 
     public function GetAllRequest()
     {
-        $stmt = $this->mysqli->prepare("CALL GetAllRequest()");
+        $stmt = $this->mysqli->prepare("CALL Admin_GetAllRequest()");
             if (!$stmt) {
                 return null;
             }
@@ -24,6 +24,36 @@ class Request{
                 return $userFiles;
             }     
             return null;
-    } 
+    }  
+
+    
+    public function AcceptRequest($guid_file, $user_id)
+    {
+        $stmt = $this->mysqli->prepare("CALL Admin_AcceptRequest()");
+        
+        if (!$stmt) {
+                return null;
+            }  
+
+        if (!$stmt) {
+            echo json_encode(['statuscode' => 500, 'message' => 'Prepare failed: ' . $this->mysqli->error]);
+            return;
+        }
+
+         $stmt->bind_param("si", $guid_file, $user_id);
+    
+        if (!$stmt->execute()) {
+            echo json_encode(['statuscode' => 500, 'message' => 'Execute failed: ' . $stmt->error]);
+            $stmt->close();
+            return;
+        }
+
+        $stmt->close(); 
+
+        echo json_encode([
+            'statuscode' => 200,
+            'message' => 'File request accepted!',
+        ]);
+    }
 
 }

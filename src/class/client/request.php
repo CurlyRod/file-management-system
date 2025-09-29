@@ -14,7 +14,7 @@ class Request
         if (empty($filename) || empty($user_id)) {
             echo json_encode([
                 'statuscode' => 400,
-                'message'    => 'Filename and User ID are required!',
+                'message'    => 'Filename required!',
                 'data'       => null
             ]);
             return;
@@ -88,9 +88,9 @@ class Request
     }  
   
 
-    public function GetAllRequestTransactionById()
+    public function GetAllRequestTransactionById($user_id)
     {
-        $stmt = $this->mysqli->prepare("CALL Client_GetTransationFile()"); 
+        $stmt = $this->mysqli->prepare("CALL Client_GetTransationFile(?)"); 
                 
         if (!$stmt) {
             http_response_code(500);
@@ -100,11 +100,10 @@ class Request
             ]);
             return [];
         } 
-
-
+        
+        $stmt->bind_param("i", $user_id);
 
         $userFiles = [];
-
         if ($stmt->execute()) {
             $result = $stmt->get_result();  
             if ($result && $result->num_rows > 0) {
@@ -119,11 +118,6 @@ class Request
         $this->mysqli->next_result();
         return $userFiles;
     }  
-    
-        
-   
-
-    
 
 }
 

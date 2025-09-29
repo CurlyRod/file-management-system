@@ -70,12 +70,13 @@ if (isset($_POST['action']) && $_POST['action'] === "get_all_request_files") {
                 default:
                     $iconClass = 'fa-solid fa-file'; 
                     $ext = 'File';
-            }
+            } 
+            $file_guid = $userFile['guid_file'];
             $output .= '<tr> 
             
                 <td>' . $counter++ . '</td>
                   <td>' . htmlspecialchars($owner) . '</td>  
-                     <td>' . htmlspecialchars($userFile['filename']) . '</td>   
+                     <td id="file_id" data-id="' . htmlspecialchars($file_guid) . '">' . htmlspecialchars($userFile['filename']) . '</td>   
                  <td>
                 <large>
                     <span><i class="' . $iconClass . '"></i></span>
@@ -84,7 +85,7 @@ if (isset($_POST['action']) && $_POST['action'] === "get_all_request_files") {
             </td>     
                 <td>' . htmlspecialchars($userFile['date_created']) . '</td>
                 <td class="action-container">
-                   <span id="btn-view-files" data-id="' . htmlspecialchars($userFile['id']) . '"> <button class="btn btn-primary btn-sm">Accept</button></span> 
+                   <span id="accept_file_request" data-id="' . htmlspecialchars($userFile['id']) . '"> <button class="btn btn-primary btn-sm">Accept</button></span> 
                          <span id="btn-view-files" data-id="' . htmlspecialchars($userFile['id']) . '"> <button class="btn btn-danger btn-sm">Decline</button></span> 
                 </td> 
             </tr>';
@@ -98,4 +99,10 @@ if (isset($_POST['action']) && $_POST['action'] === "get_all_request_files") {
     exit; 
 } 
      
+  if ($_POST['action'] == 'accept_file_request') { 
+         $user_id = intval($_POST['id']); 
+         $guid_file = $_POST['guid_file'];
+         $fileRequest->AcceptRequestFile($guid_file, $user_id); 
+         exit;
+    }
 ?>
