@@ -1,5 +1,6 @@
     var baseUrl = window.location.origin + '/file-management-system/src';  
     var absolutePath = baseUrl + "/controller/admin/file-management.php";  
+    var user_id =  $("#session_id").text(); 
 
     function GetAllFolders()
     {  
@@ -175,12 +176,12 @@
 
 
     function GetAllUserFiles()
-    {   
-      
+    {           
+
         $.ajax({
             url: absolutePath,
             type: "POST", 
-            data: { action: "get_all_files" },
+            data: { action: "get_all_files" , user_id: id },
             success: function(response) {  
             //console.log(response); 
             $('#user-files-container-table').html(response);      

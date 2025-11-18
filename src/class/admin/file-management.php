@@ -66,26 +66,56 @@
         }
         
 
-        public function GetAllUserFiles()
+        // public function GetAllUserFiles()
+        // {
+        //     $stmt = $this->mysqli->prepare("CALL Admin_GetAllFilesByID(?)"); 
+        //     $stmt->bind_param('i', 3);
+        //         if (!$stmt) {
+        //             return null;
+        //         }
+            
+        //         if ($stmt->execute()) {
+        //             $result = $stmt->get_result();
+        //             $userFiles = [];
+            
+        //             while ($row = $result->fetch_assoc()) {
+        //                 $userFiles[] = $row;
+        //             }    
+        //             return $userFiles;
+        //         }     
+        //         return null;
+        // } 
+ 
+        public function GetAllUserFiles($userID) 
         {
-            $stmt = $this->mysqli->prepare("CALL GetAllFilesByID()");
-                if (!$stmt) {
-                    return null;
-                }
-            
-                if ($stmt->execute()) {
-                    $result = $stmt->get_result();
-                    $userFiles = [];
-            
-                    while ($row = $result->fetch_assoc()) {
-                        $userFiles[] = $row;
-                    }    
-                    return $userFiles;
-                }     
-                return null;
-        } 
+            $userID = (int) $userID;        
+            if ($userID <= 0) {
+                return [];
+            }
 
-        
+            $stmt = $this->mysqli->prepare("CALL Admin_GetAllFilesByID(?)");                 
+            $stmt->bind_param('i', $userID); 
+            if (!$stmt) {
+
+                return null; 
+            }
+            
+            if ($stmt->execute()) {
+                $result = $stmt->get_result();
+                $userFiles = [];
+
+                while ($row = $result->fetch_assoc()) {
+                    $userFiles[] = $row;
+                } 
+                
+                $stmt->close(); 
+                return $userFiles;
+            } 
+            
+            $stmt->close();
+            return null;
+        }
+            
         public function DeleteFilesById($id) {
             $stmt = $this->mysqli->prepare("CALL DeleteFilesById(?)");
         

@@ -32,14 +32,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $userRole = $userAccount["role"]; 
 
             $_SESSION['role'] = $userRole; 
-            $_SESSION['email'] = $userAccount["email"];
+            $_SESSION['email'] = $userAccount["email"]; 
+            $_SESSION['user_id'] = $userAccount["id"];
             if($userRole == 2)
             {    
-                header("Location: ./admin");  
+                header("Location: ./admin/");  
                 exit;
-            }else
+            }else if($userRole == 1)
             {
-                header("Location: ./authentication/test.php");  
+                header("Location: ./client/");  
                 exit;
             }         
             // $_SESSION["user_id"] = $userAccount["id"];

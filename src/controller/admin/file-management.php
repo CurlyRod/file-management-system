@@ -30,7 +30,7 @@ switch ($_POST['action']) {
 } 
 
 if (isset($_POST['action']) && $_POST['action'] === "get_all_files") {
-    $usersFiles = $fileManagement->GetAllUserFiles();  
+    $usersFiles = $fileManagement->GetAllUserFiles($_POST['user_id']);  
   //   echo json_encode($usersFiles);
     if (!empty($usersFiles )) {
         

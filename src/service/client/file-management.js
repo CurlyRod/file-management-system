@@ -1,6 +1,6 @@
     var baseUrl = window.location.origin + '/file-management-system/src';   
     var absolutePath = baseUrl + "/controller/client/file-management.php/"; 
-    var user_id =  $("#user_id").val();  
+    var user_id =  $("#session_id").text(); 
 
 
  $(document).ready(function () {
@@ -14,7 +14,7 @@
         $.ajax({
             url: absolutePath,
             type: "POST", 
-            data: { action: "get_all_files" , user_id: 3 },
+            data: { action: "get_all_files" , user_id: user_id },
             success: function(response) {  
             //console.log(response); 
             $('#user-request-container-table').html(response);      

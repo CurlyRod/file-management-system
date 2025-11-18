@@ -57,14 +57,13 @@
             </div>
         </div>
         <!-- [ Main Content ] end -->
-
-        <!-- Required Js -->
-        <?php include '../../src/include/scripts/scripts.php'?> 
-         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <!-- Required Js --> 
+        <?php include '../../src/include/scripts/scripts.php'?>  
+         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
          <script src="../../src/service/admin/file-management.js"></script>  
          <script src="../../src/include/components/pagination.js"></script> 
-         <script src="../../src/include/components/toast.js"></script>  
-
+         <script src="../../src/include/components/toast.js"></script>   
+         <script src="../../route.js"></script>
 </body>
 <!-- [Body] end -->
 

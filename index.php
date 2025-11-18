@@ -1,5 +1,5 @@
 
-<?php  
+<?php   
     require __DIR__. "/authentication/db-conn.php";
     require __DIR__. "/authentication/authentication.php" ;   
  ?> 

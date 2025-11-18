@@ -1,3 +1,4 @@
+<?php require dirname(dirname(dirname(__FILE__))) . "/authentication/verify.php" ; ?>
 <!DOCTYPE html>
 <html lang="en">
 <?php include '../../src/includes/head.php'?> 
@@ -58,7 +59,8 @@
 
         <!-- Required Js -->
         <?php include '../../src/include/scripts/scripts.php'?> 
-         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+         <script src="../../route.js"></script>
          <script src="../../src/include/components/pagination.js"></script> 
          <script src="../../src/include/components/toast.js"></script>  
          <script src="../../src/service/client/file-management.js"></script>  

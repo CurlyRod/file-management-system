@@ -63,7 +63,8 @@
         aria-expanded="false"
       >
         <!-- <img src="../assets/images/user/avatar-2.jpg" alt="user-image" class="user-avtar"> -->
-        <span><?php echo $_SESSION['email'];?></span>
+        <span><?php echo $_SESSION['email'];?></span> 
+        <span id="session_id" class=""><?php echo $_SESSION['user_id'];?></span>
       </a>
       <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
         <div class="dropdown-header">
@@ -89,9 +90,8 @@
         </ul>
         <div class="tab-content" id="mysrpTabContent">
           <div class="tab-pane fade show active" id="drp-tab-1" role="tabpanel" aria-labelledby="drp-t1" tabindex="0">
-         
-            <a href="#!" class="dropdown-item">
-              <i class="ti ti-power"></i>
+            <a id="logout" class="dropdown-item">
+              <i  class="ti ti-power"></i>
               <span>Logout</span>
             </a>
           </div>
@@ -100,5 +100,6 @@
     </li>
   </ul>
 </div>
- </div>
-</header>
+ </div> 
+ 
+</header> 
