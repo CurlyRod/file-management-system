@@ -63,7 +63,7 @@
         aria-expanded="false"
       >
         <!-- <img src="../assets/images/user/avatar-2.jpg" alt="user-image" class="user-avtar"> -->
-        <span>Rod Mark Rufino</span>
+        <span><?php echo $_SESSION['email'];?></span>
       </a>
       <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
         <div class="dropdown-header">

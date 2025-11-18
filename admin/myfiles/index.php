@@ -1,3 +1,4 @@
+<?php require dirname(dirname(dirname(__FILE__))) . "/authentication/verify.php" ; ?>
 <!DOCTYPE html>
 <html lang="en">
 <?php include '../../src/includes/head.php'?> 
