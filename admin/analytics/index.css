@@ -1,0 +1,70 @@
+.panel .row .col{
+  border:1px solid #105a97;  
+  height:50px;  
+  border-radius: 5px; 
+}    
+.panel .col {
+  display:flex; 
+  align-items:center; 
+  justify-content:space-between;
+}
+img#logo-folder {
+    height:30px; 
+}
+.panel .row {
+    gap:10px;
+} 
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 40px);
+    gap: 5px;
+}
+#reqChart {
+    width: 300px !important;
+    height: 300px !important;
+}
+.day {
+    padding: 8px;
+    text-align: center;
+    border-radius: 5px;
+    background: #e5f6ff;
+    cursor: pointer;
+}
+
+.day:hover {
+    background: #90caf9;
+    color: #fff;
+}
+
+.day.empty {
+    background: transparent;
+    cursor: default;
+} 
+.day-header {
+    font-weight: bold;
+    background-color: #e0e0e0;
+    text-align: center;
+    padding: 2px;
+    border-radius: 5px;
+}
+
+.sunday {
+    color: red;
+} 
+.analytics { 
+     margin-top: 1rem;
+    display:flex;
+    justify-content: space-around;
+}
+
+span#title-bar {
+    margin-top:1rem; 
+
+}
+.panel {
+    margin-bottom:1rem;
+}
+.table-requestor.mt-5 {
+    border-top:1px solid #6866662e; 
+}

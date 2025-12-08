@@ -19,7 +19,7 @@
                 </li>
                 <li class="pc-item">
                     <a href="../../admin/myfiles/" class="pc-link">
-                        <img src="<?php echo $baseUrl . 'assets/images/vendor/attach.png'?>" alt="">
+                        <img src="<?php echo $baseUrl . 'assets/images/vendor/user-management.png'?>" alt="">
                         <span class="pc-mtext">My Files</span>
                     </a>
                 </li>
@@ -28,25 +28,7 @@
                         <img src="<?php echo $baseUrl . 'assets/images/vendor/excel.png'?>" alt="">
                         <span class="pc-mtext">Resolved Tickets</span>
                     </a>
-                </li> 
-                <li class="pc-item">
-                    <a href="../../admin/transaction-code/" class="pc-link">
-                        <img src="<?php echo $baseUrl . 'assets/images/vendor/transaction-history.png'?>" alt="">
-                        <span class="pc-mtext">Transaction Code</span>
-                    </a>
-                </li> 
-                <li class="pc-item">
-                    <a href="../../admin/request/" class="pc-link">
-                    <img src="<?php echo $baseUrl . 'assets/images/vendor/request.png'?>" alt="">
-                        <span class="pc-mtext">Request</span>
-                    </a>
-                </li> 
-                <li class="pc-item">
-                    <a href="../../admin/analytics/" class="pc-link">
-                    <img src="<?php echo $baseUrl . 'assets/images/vendor/bar-chart.png'?>" alt="">
-                        <span class="pc-mtext">Analytics</span>
-                    </a>
-                </li>
+                </li>         
             </ul>
         </div>
     </div>

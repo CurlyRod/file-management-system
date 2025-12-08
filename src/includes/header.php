@@ -64,7 +64,7 @@
       >
         <!-- <img src="../assets/images/user/avatar-2.jpg" alt="user-image" class="user-avtar"> -->
         <span><?php echo $_SESSION['email'];?></span> 
-        <span id="session_id" class=""><?php echo $_SESSION['user_id'];?></span>
+        <span id="session_id" class="d-none"><?php echo $_SESSION['user_id'];?></span>
       </a>
       <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
         <div class="dropdown-header">

@@ -1,6 +1,7 @@
     var baseUrl = window.location.origin + '/file-management-system/src';  
     var absolutePath = baseUrl + "/controller/admin/file-management.php";  
-    var user_id =  $("#session_id").text(); 
+    var user_id =  $("#session_id").text();  
+ 
 
     function GetAllFolders()
     {  
@@ -43,8 +44,9 @@
         </div>
         `;
 
-        $('#modal-container').html(modalHTML);
-        const modal = new bootstrap.Modal(document.getElementById('uploadModal'));
+        $('#modal-container').html(modalHTML); 
+        $("#user_id").val(user_id);
+        const modal = new bootstrap.Modal(document.getElementById('uploadModal')); 
         modal.show();
     });
 
@@ -181,7 +183,7 @@
         $.ajax({
             url: absolutePath,
             type: "POST", 
-            data: { action: "get_all_files" , user_id: id },
+            data: { action: "get_all_files" , user_id: user_id },
             success: function(response) {  
             //console.log(response); 
             $('#user-files-container-table').html(response);      

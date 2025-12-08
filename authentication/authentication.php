@@ -33,14 +33,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             $_SESSION['role'] = $userRole; 
             $_SESSION['email'] = $userAccount["email"]; 
-            $_SESSION['user_id'] = $userAccount["id"];
+            $_SESSION['user_id'] = $userAccount["id"]; 
+            $_SESSION['full_name'] = $userAccount["firstname"] .' '. $userAccount["lastname"];
             if($userRole == 2)
             {    
                 header("Location: ./admin/");  
                 exit;
-            }else if($userRole == 1)
+            }
+            else if($userRole == 1)
             {
                 header("Location: ./client/");  
+                exit;
+            }else if($userRole == 3)
+            {
+                header("Location: ./super-admin/user-management/");  
                 exit;
             }         
             // $_SESSION["user_id"] = $userAccount["id"];

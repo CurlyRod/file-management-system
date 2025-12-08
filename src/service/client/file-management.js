@@ -1,11 +1,11 @@
     var baseUrl = window.location.origin + '/file-management-system/src';   
     var absolutePath = baseUrl + "/controller/client/file-management.php/"; 
     var user_id =  $("#session_id").text(); 
-
+    
 
  $(document).ready(function () {
         GetAllUserFiles(); 
-        console.log(user_id);
+        console.log(user_id); 
     });
 
      function GetAllUserFiles()
@@ -35,7 +35,7 @@
                             </div>
                             <div class="modal-body">
                                 <input type="file" name="file" class="form-control mb-3" required>
-                                <input type="hidden" name="user_id" id="user_id" value="2">
+                                <input type="hidden" name="user_id" id="user_id" >
 
                                 <div class="progress mb-2" style="height: 20px;">
                                     <div id="upload-progress" class="progress-bar" role="progressbar" style="width: 0%;">0%</div>
@@ -52,7 +52,8 @@
             </div>
             `;
 
-            $('#modal-container').html(modalHTML);
+            $('#modal-container').html(modalHTML); 
+            $("#user_id").val(user_id);
             const modal = new bootstrap.Modal(document.getElementById('uploadModal'));
             modal.show();
         });
