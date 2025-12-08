@@ -1,7 +1,9 @@
 
 <?php   
     require __DIR__. "/authentication/db-conn.php";
-    require __DIR__. "/authentication/authentication.php" ;   
+    require __DIR__. "/authentication/authentication.php" ;    
+
+    echo password_hash("test123", PASSWORD_DEFAULT);
  ?> 
 
 <!DOCTYPE html>

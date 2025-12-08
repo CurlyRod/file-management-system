@@ -43,9 +43,9 @@
                                 <div class="content">
                                     <form action="POST">
                                         <span>
-                                            <input type="hidden" name="user_id" id="user_id" value="3">
+                                            <input type="hidden" name="user_id" id="user_id">
                                             <label>NAME</label>
-                                            <input class="form-control form-control-md mb-1" type="text">
+                                            <input class="form-control form-control-md mb-1" type="text" value="<?php echo $_SESSION['full_name'] ?>" disabled>
                                         </span>
                                         <span>
                                             <label class>FILE NAME</label> 
@@ -118,7 +118,8 @@
         <script src="../../src/include/components/search.js"></script>
         <script src="../../src/include/components/toast.js"></script> 
         <script src="<?php echo $baseUrl . 'include/select2/select2.min.js'?>"></script> 
-        <script src="../../src/service/client/request.js"></script> 
+        <script src="../../src/service/client/request.js"></script>  
+        <script src="../../route.js"></script>
         
 </body>
 <!-- [Body] end -->

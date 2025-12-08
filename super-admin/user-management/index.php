@@ -1,14 +1,10 @@
 <?php require dirname(dirname(dirname(__FILE__))) . "/authentication/verify.php" ; ?>
 <!DOCTYPE html>
 <html lang="en">
-<!-- [Head] start -->
 <?php include '../../src/includes/head.php'?> 
 <link rel="stylesheet" href="<?php echo $baseUrl  . '/assets/css/style.css'?>" id="main-style-link"> 
 <link rel="stylesheet" href="<?php echo $baseUrl . '/assets/css/custom/style.css' ?>" />  
 <link rel="stylesheet" href="<?php echo $baseUrl . '/assets/js/toastr/toastr.min.css' ?>" />  
-<!-- [Head] end -->
-<!-- [Body] Start -->
-
 <body data-pc-preset="preset-1" data-pc-direction="ltr" data-pc-theme="light">
     <!-- [ Pre-loader ] start -->
     <div class="loader-bg">
@@ -18,7 +14,7 @@
     </div>
     <!-- [ Pre-loader ] End -->
     <!-- [ Sidebar Menu ] start -->
-    <?php include  '../../src/includes/admin/navbar.php' ?>
+    <?php include  '../../src/includes/super-admin/navbar.php' ?>
     <!-- [ Sidebar Menu ] end -->
     <!-- [ Header Topbar ] start -->
     <?php include  '../../src/includes/header.php' ?>
@@ -43,10 +39,15 @@
                                         </div>
                                         </form>
                                     </div>
+                         
+                                <div class="col d-flex justify-content-end">
+                                    <button type="button" class="btn btn-primary btn-sm add-user-btn"
+                                       id="add-user-files">Upload</button>
+                                </div> 
                                 <div id="modal-container"></div>
                             </div>
                             <div class="card-body">
-                                <div id="request-files-container-table"></div>
+                                <div id="user-list-container-table"></div>
                                 <div id="pagination" class="mt-2 d-flex justify-content-center"></div>
                             </div>
                         </div>
@@ -56,18 +57,16 @@
             </div>
         </div>
         <!-- [ Main Content ] end -->
-
-        <!-- Required Js -->
-        <?php include '../../src/include/scripts/scripts.php'?> 
-         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-         <script src="../../src/service/admin/request.js"></script>  
+        <!-- Required Js --> 
+        <?php include '../../src/include/scripts/scripts.php'?>  
+         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+         <script src="../../src/service/admin/file-management.js"></script>  
          <script src="../../src/include/components/pagination.js"></script> 
          <script src="../../src/include/components/toast.js"></script>   
-         <script src="../../src/include/components/search.js"></script>
-         <script src="../../src/include/components/custom-toast.js"></script> 
-        <script src="../../route.js"></script>
-         
+         <script src="../../route.js"></script>
 </body>
 <!-- [Body] end -->
 
-</html>
+</html>  
+
+

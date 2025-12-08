@@ -1,7 +1,8 @@
     var baseUrl = window.location.origin + '/file-management-system/src';  
-    var absolutePath = baseUrl + "/controller/admin/transaction-code.php";  
-   $(document).ready(function () {
-            GetAllTransactioCode();
+    var absolutePath = baseUrl + "/controller/admin/transaction-code.php"; 
+    var user_id =  $("#session_id").text();   
+    $(document).ready(function () {
+         GetAllTransactioCode();
     });
 
     $(document).on('click', '#add-transaction-code', function () {
@@ -16,7 +17,7 @@
                         </div>
                         <div class="modal-body">
                            <input type="file" name="file" class="form-control mb-3" required accept="application/pdf">
-                            <input type="hidden" name="user_id" value="2">
+                            <input type="hidden" name="user_id" id="user_id">
 
                             <div class="progress mb-2" style="height: 20px;">
                                 <div id="upload-progress" class="progress-bar" role="progressbar" style="width: 0%;">0%</div>
@@ -33,7 +34,8 @@
         </div>
         `;
 
-        $('#modal-container').html(modalHTML);
+        $('#modal-container').html(modalHTML); 
+        $("#user_id").val(user_id);
         const modal = new bootstrap.Modal(document.getElementById('uploadTransactionCodeModal'));
         modal.show();
     }); 
@@ -97,10 +99,10 @@
                         "positionClass": "toast-top-right",
                         "timeOut": "5000"
                     };
-    
+                     GetAllTransactioCode();
                     toastr.success(res.message); 
                     console.log(res);
-                 GetAllTransactioCode();
+               
                 }
             },
             error: function (xhr, status, error) {
@@ -114,8 +116,8 @@
     {
         $.ajax({
             url: absolutePath,
-            type: "POST", 
-            data: { action: "getall_transaction_code" },
+            type: "POST",  
+            data: { action: "getall_transaction_code"},
             success: function(response) {  
             $('#resolve-tickets-container-table').html(response);      
             paginateTable("#transaction-code-table", 10);

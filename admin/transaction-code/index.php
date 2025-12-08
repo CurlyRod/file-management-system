@@ -64,7 +64,8 @@
          <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
          <script src="../../src/service/admin/transaction-code.js"></script>  
          <script src="../../src/include/components/pagination.js"></script> 
-         <script src="../../src/include/components/toast.js"></script>  
+         <script src="../../src/include/components/toast.js"></script>   
+         <script src="../../route.js"></script>
 </body>
 <!-- [Body] end -->
 

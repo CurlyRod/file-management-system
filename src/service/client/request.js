@@ -1,7 +1,8 @@
     var baseUrl = window.location.origin + '/file-management-system/src';   
     var absolutePath = baseUrl + "/controller/client/request.php"; 
-    var user_id =  $("#user_id").val(); 
-    let guid;
+    var user_id =  $("#session_id").text();  
+    let guid; 
+
 
     $(document).ready(function () {  
         GetAllRequest(user_id); 
@@ -21,9 +22,6 @@
     if (confirm("Do you want to proceed with requesting this file?")) {
         let guid     = $('#select-request-file').val();
         let filename = $('#select-request-file option:selected').text();
-
-        console.log("Sending Request:", { guid, filename, user_id });
-
         $.ajax({
             url: absolutePath,
             type: "POST",
@@ -93,7 +91,6 @@
             dataType: "json",
             data: { action: "getall_transaction_code", user_id: user_id },
             success: function(response) {
-                console.log(response);
                 let dataArray = Array.isArray(response) ? response : [];
 
                 $('#select-request-file').empty();

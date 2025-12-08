@@ -1,6 +1,7 @@
     var baseUrl = window.location.origin + '/file-management-system/src';  
     var absolutePath = baseUrl + "/controller/admin/resolved-tickets.php"; 
-    
+    var user_id =  $("#session_id").text();  
+   
     $(document).ready(function () {
         GetAllResolvedTicket();
     });
@@ -34,7 +35,8 @@
         </div>
         `;
 
-        $('#modal-container').html(modalHTML);
+        $('#modal-container').html(modalHTML); 
+        $("#user_id").val(user_id);
         const modal = new bootstrap.Modal(document.getElementById('uploadResolvedTicketsModal'));
         modal.show();
     }); 
