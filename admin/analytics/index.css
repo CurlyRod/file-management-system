@@ -17,7 +17,7 @@ img#logo-folder {
 
 .calendar-grid {
     display: grid;
-    grid-template-columns: repeat(7, 40px);
+    grid-template-columns: repeat(7, 85px);
     gap: 5px;
 }
 #reqChart {
@@ -68,3 +68,68 @@ span#title-bar {
 .table-requestor.mt-5 {
     border-top:1px solid #6866662e; 
 }
+
+.month-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+.month-item {
+    padding: 4px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background: white;
+}
+
+.month-item.active-month {
+    background: #0288d1;
+    color: white;
+    border-color: #0288d1;
+}
+
+.day {
+    padding: 8px;
+    text-align: center;
+    border-radius: 5px;
+    background: #e5f6ff;
+    cursor: pointer;
+}
+
+.day.empty {
+    background: transparent;
+    cursor: default;
+}
+
+.day.sunday {
+    color: red;
+}
+
+.day.active {
+    background: #0288d1;
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+}
+
+
+input#yearInput {
+    width:200px !important; 
+    margin-bottom:.5rem;
+}
+
+div#monthYear {
+    font-size:1.2rem; 
+    font-weight:bold; 
+    display:none;
+}
+
+.day.active {
+    background-color: #0288d1;
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+}
+

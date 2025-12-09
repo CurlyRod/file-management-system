@@ -18,9 +18,9 @@
                     <i class="ti ti-dashboard"></i>
                 </li>
                 <li class="pc-item">
-                    <a href="../../admin/myfiles/" class="pc-link">
+                    <a href="../../super-admin/user-management/" class="pc-link">
                         <img src="<?php echo $baseUrl . 'assets/images/vendor/user-management.png'?>" alt="">
-                        <span class="pc-mtext">My Files</span>
+                        <span class="pc-mtext">User management</span>
                     </a>
                 </li>
                 <li class="pc-item">

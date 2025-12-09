@@ -17,7 +17,8 @@
     <?php include  '../../src/includes/super-admin/navbar.php' ?>
     <!-- [ Sidebar Menu ] end -->
     <!-- [ Header Topbar ] start -->
-    <?php include  '../../src/includes/header.php' ?>
+    <?php include  '../../src/includes/header.php' ?> 
+    <?php include '../modal.php'?> 
     <!-- [ Header ] end -->
 
     <!-- [ Main Content ] start -->
@@ -41,13 +42,14 @@
                                     </div>
                          
                                 <div class="col d-flex justify-content-end">
-                                    <button type="button" class="btn btn-primary btn-sm add-user-btn"
-                                       id="add-user-files">Upload</button>
+                                    <button type="button" class="btn btn-primary btn-sm add-user-btn"  data-bs-toggle="modal" 
+                                    data-bs-target="#add-user-modal"
+                                     id="add-user-files">Add</button>
                                 </div> 
                                 <div id="modal-container"></div>
                             </div>
                             <div class="card-body">
-                                <div id="user-list-container-table"></div>
+                                <div id="user-container-table"></div>
                                 <div id="pagination" class="mt-2 d-flex justify-content-center"></div>
                             </div>
                         </div>
@@ -60,10 +62,20 @@
         <!-- Required Js --> 
         <?php include '../../src/include/scripts/scripts.php'?>  
          <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
-         <script src="../../src/service/admin/file-management.js"></script>  
+         <script src="../../src/service/super-admin/user-management.js"></script>  
          <script src="../../src/include/components/pagination.js"></script> 
          <script src="../../src/include/components/toast.js"></script>   
-         <script src="../../route.js"></script>
+         <script src="../../route.js"></script> 
+         <script>
+        function togglePassword() {
+            const input = document.getElementById("user-password");
+            if (input.type === "password") {
+                input.type = "text";  // show password
+            } else {
+                input.type = "password";  // hide password
+            }
+        }
+</script>
 </body>
 <!-- [Body] end -->
 

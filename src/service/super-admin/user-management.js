@@ -1,3 +1,6 @@
+    var baseUrl = window.location.origin + '/file-management-system/src';  
+    var absolutePath = baseUrl + "/controller/super-admin/user-management.php";  
+    var user_id =  $("#session_id").text();  
 
  // Insert user -rod   
 $(document).on('submit', '#add-user-form', function(e) {   
@@ -5,7 +8,7 @@ $(document).on('submit', '#add-user-form', function(e) {
 
     var formData = $(this).serialize() + "&action=insert";
     $.ajax({
-        url: "../../../controller/super-admin/user-management.php",
+        url: absolutePath,
         type: "POST",
         data: formData,
         success: function(response) {
@@ -54,7 +57,7 @@ $(document).ready(function () {
 function GetAllUsers()
 {
     $.ajax({
-        url: "../../../controller/super-admin/user-management.php",
+        url: absolutePath ,
         type: "POST",
         data: { action: "get_all" },
         success: function(response) {
@@ -68,7 +71,7 @@ $(document).on('click', '#btn-view-user', function () {
     const userId = $(this).data('id');
 
     $.ajax({
-        url: "../../../controller/super-admin/user-management.php",
+        url: absolutePath,
         type: "POST",
         data: {
             action: "get_by_id",
@@ -122,7 +125,7 @@ $(document).on('click', '#btn-delete-user', function () {
 
     if (confirm("Are you sure you want to delete this user?")) {
         $.ajax({
-            url: "../../../controller/super-admin/user-management.php",
+            url: absolutePath,
             type: "POST",
             data: {
                 action: "delete_user",
