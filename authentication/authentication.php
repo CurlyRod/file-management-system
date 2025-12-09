@@ -29,8 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (password_verify($_POST["password"], $userAccount["password_hash"])) {
             session_start();
             session_regenerate_id();
-            $userRole = $userAccount["role"]; 
-
+            $userRole = $userAccount["role"];  
             $_SESSION['role'] = $userRole; 
             $_SESSION['email'] = $userAccount["email"]; 
             $_SESSION['user_id'] = $userAccount["id"]; 
@@ -49,9 +48,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 header("Location: ./super-admin/user-management/");  
                 exit;
             }         
-            // $_SESSION["user_id"] = $userAccount["id"];
-            // header("Location: ./dashboard");
-            //exit;
         }
     }
     

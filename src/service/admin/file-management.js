@@ -1,8 +1,7 @@
     var baseUrl = window.location.origin + '/file-management-system/src';  
-    var absolutePath = baseUrl + "/controller/admin/file-management.php";  
+    var absolutePath = baseUrl + "/controller/admin/file-management.php";   
     var user_id =  $("#session_id").text();  
- 
-
+    var user_mail = $("#usermail").text(); 
     function GetAllFolders()
     {  
         $.ajax({
@@ -27,7 +26,7 @@
                         </div>
                         <div class="modal-body">
                             <input type="file" name="file" class="form-control mb-3" required>
-                            <input type="hidden" name="user_id" value="3">
+                            <input type="hidden" name="user_id" id="user_id">
 
                             <div class="progress mb-2" style="height: 20px;">
                                 <div id="upload-progress" class="progress-bar" role="progressbar" style="width: 0%;">0%</div>
@@ -56,7 +55,13 @@
 
         const form = $(this)[0];
         const formData = new FormData(form);
-        formData.append("action", "upload_file");
+        formData.append("action", "upload_file"); 
+
+        const fileInput = form.querySelector('input[type="file"]');
+        let fileName = "";
+        if (fileInput && fileInput.files.length > 0) {
+            fileName = fileInput.files[0].name;
+        }
 
         $.ajax({
             xhr: function () {
@@ -102,8 +107,9 @@
                         "showMethod": "fadeIn",
                         "hideMethod": "fadeOut"
                     }
-                    
-                    toastr.success(res.message); 
+                    AuditLogs(fileName + "  " + res.message + " by " + user_mail);
+                    toastr.success(res.message);  
+
                     GetAllUserFiles();
                 }          
             },
@@ -256,7 +262,18 @@
     });
     
     
-    
+    function AuditLogs(message)
+    {           
+
+        $.ajax({
+            url: absolutePath,
+            type: "POST", 
+            data: { action: "audit_logs" , message: message},
+            success: function(response) {  
+            console.log(response); 
+            }
+        });
+    }  
     
     
 

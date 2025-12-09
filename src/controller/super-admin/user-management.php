@@ -38,7 +38,7 @@
                     <th>Lastname</th>
                     <th>Email</th>
                     <th>Role</th>
-                    <th>Status</th>
+
                     <th>Date Created</th>
                     <th>Actions</th>
                 </tr>
@@ -64,12 +64,12 @@
                 <td>' . htmlspecialchars($user['lastname']) . '</td>
                 <td>' . htmlspecialchars($user['email']) . '</td>
                 <td>' . $roleText. '</td>
-                <td>' . $statusText . '</td>
+         
                 <td>' . htmlspecialchars($user['date_created']) . '</td>
                 <td class="action-container">
-                   <span id="btn-view-user" data-id="' . htmlspecialchars($user['id']) . '"> <img src="../../../page/images/eye.png"></span> 
-                   <span id="btn-edit-user" data-id="' . htmlspecialchars($user['id']) . '"> <img src="../../../page/images/pencil.png"></span>  
-                   <span id="btn-delete-user" data-id="' . htmlspecialchars($user['id']) . '"> <img src="../../../page/images/trash.png"></span> 
+                   <span id="btn-view-user" data-id="' . htmlspecialchars($user['id']) . '"> <img src="../../src/assets/images/vendor/eye.png"></span> 
+                   <span id="btn-edit-user" data-id="' . htmlspecialchars($user['id']) . '"> <img src="../../src/assets/images/vendor/pencil.png"></span>  
+                   <span id="btn-delete-user" data-id="' . htmlspecialchars($user['id']) . '"> <img src="../../src/assets/images/vendor/trash.png"></span> 
                 </td>
             </tr>';
         }

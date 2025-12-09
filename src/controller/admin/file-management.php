@@ -1,6 +1,7 @@
 <?php
 require_once '../../database/db-conn.php';
 require_once '../../class/admin/file-management.php';
+require_once '../../class/super-admin/audit-logs.php';
 
 ob_start(); // START buffering to catch unwanted output
 ini_set('display_errors', 1);
@@ -9,7 +10,8 @@ error_reporting(E_ALL);
 
 $database = new Database(); 
 $dbConn = Database::GetInstanceConn();
-$fileManagement = new FileManagement($dbConn);
+$fileManagement = new FileManagement($dbConn); 
+$auditLogs = new AuditLogs($dbConn);
 
 if (!isset($_POST['action'])) {
     echo json_encode(['statuscode' => 400, 'message' => 'No action specified']);
@@ -131,6 +133,12 @@ if (isset($_POST['action']) && $_POST['action'] === "get_all_files") {
     if ($_POST['action'] === 'get_file_download') {
         $id = intval($_POST['id']);
         $fileManagement->DownloadFiles($id); 
+        exit;
+    } 
+
+    if ($_POST['action'] === 'audit_logs') {
+        $message = $_POST['message'];
+        $auditLogs->AuditLog($message);
         exit;
     }
 ?>

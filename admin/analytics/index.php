@@ -42,7 +42,7 @@
                                                     alt="logo">
                                                 <label>Total of "Myfiles"</label>
                                             </span>
-                                            <span>110</span>
+                                            <span id="total_myfiles">0</span>
                                         </div>
                                         <div class="col">
                                             <span>
@@ -51,7 +51,7 @@
                                                     alt="logo">
                                                 <label>Total of "Resolved Tickets"</label>
                                             </span>
-                                            <span>110</span>
+                                            <span id="total_resolve">0</span>
                                         </div>
                                         <div class="col">
                                             <span>
@@ -60,7 +60,7 @@
                                                     alt="logo">
                                                 <label>Total of "Transaction"</label>
                                             </span>
-                                            <span>210</span>
+                                            <span id="total_transac">0</span>
                                         </div>
                                     </div>
                                 </div>
@@ -70,51 +70,51 @@
                                 <div>
                                     <canvas id="reqChart"></canvas>
                                 </div>
-                                <div>
-                                    <div id="calendar-container">
-                                        <h3 id="monthYear"></h3>
-                                        <div id="calendar" class="calendar-grid"></div>
-                                    </div>
-                                </div>
+                                    <div id="calendar-container">                                     
+                                            <input type="number" class="form-control" id="yearInput" placeholder="Enter year">
+                                            <div id="monthList" class="month-list"></div>
+                                            <div id="monthYear"></div>
+                                            <div id="calendar" class="calendar-grid"></div>
                             </div>
+                            </div> 
                             <div class="table-requestor mt-5">
-                                <div class="content mt-2">
-                                    <div class="row">
-                                        <div class="col d-flex">
-                                            <form class="px-3">
-                                                <div class="form-group mb-1 d-flex align-items-center">
-                                                    <i data-feather="search"></i>
-                                                    <input id="files-search"
-                                                        class="form-control border-1 shadow-sm  mx-2"
-                                                        placeholder="Search here. . ." style="width:500px">
-                                                </div>
-                                            </form>
+                                    <div class="content mt-2">
+                                        <div class="row">
+                                            <div class="col d-flex">
+                                                <form class="px-3">
+                                                    <div class="form-group mb-1 d-flex align-items-center">
+                                                        <i data-feather="search"></i>
+                                                        <input id="files-search"
+                                                            class="form-control border-1 shadow-sm  mx-2"
+                                                            placeholder="Search here. . ." style="width:500px">
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div id="modal-container"></div>
                                         </div>
-                                        <div id="modal-container"></div>
-                                    </div>
-                                    <div class="card-body">
-                                        <div id="resolve-tickets-container-table"></div>
-                                        <div id="pagination" class="mt-2 d-flex justify-content-center"></div>
+                                        <div class="card-body">
+                                            <div id="resolve-tickets-container-table"></div>
+                                            <div id="pagination" class="mt-2 d-flex justify-content-center"></div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                         </div>
+                        <!-- [ Main Content ] end -->
                     </div>
-                    <!-- [ Main Content ] end -->
                 </div>
-            </div>
-            <!-- [ Main Content ] end -->
+                <!-- [ Main Content ] end -->
 
-            <!-- Required Js -->
+                <!-- Required Js -->
 
-            <?php include '../../src/include/scripts/scripts.php'?>
-            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-            <script src="../../src/service/admin/transaction-code.js"></script>
-            <script src="../../src/include/components/pagination.js"></script>
-            <script src="../../src/include/components/toast.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-            <script src="./analytics.js"></script>
-             <script src="../../route.js"></script>
+                <?php include '../../src/include/scripts/scripts.php'?>
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                <script src="../../src/service/admin/transaction-code.js"></script>
+                <script src="../../src/include/components/pagination.js"></script>
+                <script src="../../src/include/components/toast.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
+                <script src="./analytics.js"></script> 
+                <script src="../../src/service/admin/analytics.js"></script>
+                <script src="../../route.js"></script>
 
 </body>
 <!-- [Body] end -->
